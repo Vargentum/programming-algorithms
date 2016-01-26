@@ -1,0 +1,12 @@
+{
+  "generator-yeogurt": {
+    "config": {
+      "projectName": "programming-algorithms",
+      "htmlOption": "jade",
+      "jsPreprocessor": "es6",
+      "cssOption": "stylus",
+      "testFramework": "jasmine"
+    },
+    "version": "1.5.0"
+  }
+}
