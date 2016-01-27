@@ -4,9 +4,13 @@
 'use strict';
 
 import $ from 'jquery';
-import Link from '../_modules/link/link';
+import _ from 'lodash';
+
+import Chapter1 from '../_modules/chapter1/chapter1.js'
+
 
 $(() => {
-  new Link(); // Activate Link modules logic
-  console.log('Welcome to Yeogurt!');
+
+  Chapter1()
+
 });
