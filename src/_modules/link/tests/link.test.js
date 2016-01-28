@@ -1,15 +1,15 @@
-'use strict';
+// 'use strict';
 
-import Link from '../link';
+// import Link from '../link';
 
-describe('Link View', function() {
+// describe('Link View', function() {
 
-  beforeEach(() => {
-    this.link = new Link();
-  });
+//   beforeEach(() => {
+//     this.link = new Link();
+//   });
 
-  it('Should run a few assertions', () => {
-    expect(this.link).toBeDefined();
-  });
+//   it('Should run a few assertions', () => {
+//     expect(this.link).toBeDefined();
+//   });
 
-});
+// });

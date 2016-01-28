@@ -12,7 +12,7 @@ export default function Chapter1 () {
       if (a1(n) > a2(n)) break
       n++
     }
-    console.log(n)
+    // console.log(n)
     return n
   }
 
@@ -60,7 +60,7 @@ export default function Chapter1 () {
 
   _.forIn(t, (tv, tk) => {
     _.forIn(f, (fv, fk) => {
-      console.log(`n by ${tk} for ${fk} is ${Math.round(fv(tv))}`)
+      // console.log(`n by ${tk} for ${fk} is ${Math.round(fv(tv))}`)
     })
   })
 
