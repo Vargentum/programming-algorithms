@@ -1,14 +1,14 @@
 'use strict';
 
 export default function connectFour (board) {
-  const marks = {
+  const fields = {
     player1: 'R',
     player2: 'Y',
     empty: '-'
   }
   const statuses = {
-    player1Win: marks.player1,
-    player2Win: marks.player2,
+    player1Win: fields.player1,
+    player2Win: fields.player2,
     draw: 'draw',
     progress: 'in progress'
   }
@@ -18,47 +18,37 @@ export default function connectFour (board) {
     win: 4
   }
 
-  const boardString = board
+  const boardAsString = board
     .reduce((p, n) => p.concat(n), [])
     .join('')
 
-
-  const endings = {
-    win: {
-      x:    type => new RegExp(`${type}{${deck.win}}`, 'gi').test(boardString),
-      yr:   type => new RegExp(`(${type}.{${deck.x}}){${deck.win}}`, 'gi').test(boardString),
-      yl:   type => new RegExp(`(.{${deck.x}}${type}){${deck.win}}`, 'gi').test(boardString),
-      xylt: type => new RegExp(`(${type}.{${deck.x+1}}){${deck.win}}`, 'gi').test(boardString),
-      xyrt: type => new RegExp(`(${type}.{${deck.x-1}}){${deck.win}}`, 'gi').test(boardString),
-      xylb: type => new RegExp(`(.{${deck.x+1}}${type}){${deck.win}}`, 'gi').test(boardString),
-      xyrb: type => new RegExp(`(.{${deck.x-1}}${type}){${deck.win}}`, 'gi').test(boardString)
-    },
-    progress: () => new RegExp(`${marks.empty}`, 'g').test(boardString)
+  const winChecks = {
+    x:    type => board.map(line => line.join(''))
+                       .filter(str => new RegExp(`${type}{${deck.win}}`, 'g').test(str))
+                       .length,
+    yr:   type => new RegExp(`(${type}.{${deck.x}}){${deck.win}}`, 'g').test(boardAsString),
+    yl:   type => new RegExp(`(.{${deck.x}}${type}){${deck.win}}`, 'g').test(boardAsString),
+    xylt: type => new RegExp(`(${type}.{${deck.x+1}}){${deck.win}}`, 'g').test(boardAsString),
+    xyrt: type => new RegExp(`(${type}.{${deck.x-1}}){${deck.win}}`, 'g').test(boardAsString),
+    xylb: type => new RegExp(`(.{${deck.x+1}}${type}){${deck.win}}`, 'g').test(boardAsString),
+    xyrb: type => new RegExp(`(.{${deck.x-1}}${type}){${deck.win}}`, 'g').test(boardAsString)
   }
-
-  const winCheck = (mark) => {
-    for (let check in endings.win) {
-      if (endings.win[check](mark)) return true
+  const checkPlayerWin = (mark) => {
+    for (let tp in winChecks) {
+      if (winChecks[tp](mark)) return true
     }
     return false
   }
-
-  let status = null
+  const checkEmptyFields = () => new RegExp(`${fields.empty}`, 'g').test(boardAsString)
 
   switch (true) {
-    case winCheck(marks.player1):
-      status = statuses.player1Win
-      break;
-    case winCheck(marks.player2):
-      status = statuses.player2Win
-      break;
-    case endings.progress():
-      status = statuses.progress
-      break;
-    default:
-      status = statuses.draw
-      break;
+    case checkPlayerWin(fields.player1):
+      return statuses.player1Win
+    case checkPlayerWin(fields.player2):
+      return statuses.player2Win
+    case checkEmptyFields():
+      return statuses.progress
+    case !checkEmptyFields():
+      return status = statuses.draw
   }
-
-  return status
 }
