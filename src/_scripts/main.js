@@ -4,10 +4,12 @@
 import $ from 'jquery';
 import _ from 'lodash';
 
-import Allonge from '../_modules/js-allonge/unsorted/unsorted'
+import FirstSip from '../_modules/js-allonge/unsorted/unsorted'
+import BasicRecipes from '../_modules/js-allonge/basic-recipes/basic-recipes'
 
 $(() => {
 
-  Allonge()
+  // FirstSip()
+  BasicRecipes()
 
 });
