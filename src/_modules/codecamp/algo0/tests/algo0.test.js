@@ -4,7 +4,7 @@ import Algo0 from '../algo0';
 
 describe('Algo0 View', function() {
 
-  let {factorialize, palindrome} = Algo0()
+  let {factorialize, palindrome, findLongestWord} = Algo0()
 
   it('Should run a few assertions', () => {
     expect(Algo0()).toBeDefined();
@@ -32,6 +32,14 @@ describe('Algo0 View', function() {
       expect(palindrome('1Doc, note, I Dissent. A fast never prevents a fatness. I diet on cod.')).toBe(false)
       expect(palindrome('1POW, ami! O’ Gad, ami! Go hang a salami, doc! Note; I dissent. A fast never prevents a fatness. I diet on cod. I’m a lasagna hog. I’m a dago! I’m a wop!')).toBe(false)
     })
+  })
+  
+  describe('findLongestWord', () => {
+    it('Should return the longest word length in integer format', () => {
+      expect(findLongestWord('Doc, note, I Dissent. A fast never prevents a fatness. I diet on cod.')).toBe(8)
+      expect(findLongestWord('Google do a barrel roll')).toBe(6)
+      expect(findLongestWord('')).toBe(0)
+    });
   })
 
 });
