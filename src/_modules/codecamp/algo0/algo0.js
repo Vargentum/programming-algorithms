@@ -28,7 +28,16 @@ export default function Algo0 () {
     return sorted[0] ? sorted[0].length : 0
   }
 
+  const titleCase = function titleCase (str) {
+    return str
+      .toLowerCase()
+      .split(' ')
+      .map(w => {
+        let firstLetter = w.length ? w[0].toUpperCase() : ''
+        return w.replace(/^./, firstLetter)
+      })
+      .join(' ')        
+  }
 
-  return {reverse, factorialize, palindrome, findLongestWord}
-
+  return {reverse, factorialize, palindrome, findLongestWord, titleCase}
 }

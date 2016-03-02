@@ -4,7 +4,7 @@ import Algo0 from '../algo0';
 
 describe('Algo0 View', function() {
 
-  let {factorialize, palindrome, findLongestWord} = Algo0()
+  let {factorialize, palindrome, findLongestWord, titleCase} = Algo0()
 
   it('Should run a few assertions', () => {
     expect(Algo0()).toBeDefined();
@@ -39,6 +39,18 @@ describe('Algo0 View', function() {
       expect(findLongestWord('Doc, note, I Dissent. A fast never prevents a fatness. I diet on cod.')).toBe(8)
       expect(findLongestWord('Google do a barrel roll')).toBe(6)
       expect(findLongestWord('')).toBe(0)
+    });
+  })
+
+  describe('titleCase', () => {
+    it('Should capitalize first letter of each word in sentence', () => {
+      expect(titleCase('google do a barrel roll')).toBe('Google Do A Barrel Roll')
+    });
+    it('Should lowercase all other letters', () => {
+      expect(titleCase('GOOGLE do a barrel ROLL')).toBe('Google Do A Barrel Roll')
+    });
+    it("Should correctly handle empty strings", () => {
+      expect(titleCase('')).toBe('')
     });
   })
 
