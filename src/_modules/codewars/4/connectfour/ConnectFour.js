@@ -42,13 +42,9 @@ export default function connectFour (board) {
   const checkEmptyFields = () => new RegExp(`${fields.empty}`, 'g').test(boardAsString)
 
   switch (true) {
-    case checkPlayerWin(fields.player1):
-      return statuses.player1Win
-    case checkPlayerWin(fields.player2):
-      return statuses.player2Win
-    case checkEmptyFields():
-      return statuses.progress
-    case !checkEmptyFields():
-      return status = statuses.draw
+  case checkPlayerWin(fields.player1): return statuses.player1Win
+  case checkPlayerWin(fields.player2): return statuses.player2Win
+  case checkEmptyFields():             return statuses.progress
+  case !checkEmptyFields():            return status = statuses.draw
   }
 }
