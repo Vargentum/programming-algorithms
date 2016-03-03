@@ -1,19 +1,15 @@
 // Main javascript entry point
 // Should handle bootstrapping/starting application
-
 'use strict';
-
 import $ from 'jquery';
 import _ from 'lodash';
 
-import Chapter1 from '../_modules/chapter1/chapter1.js'
-import Racoon from '../_modules/racoon/racoon.js'
-
+import FirstSip from '../_modules/js-allonge/unsorted/unsorted'
+import BasicRecipes from '../_modules/js-allonge/basic-recipes/basic-recipes'
 
 $(() => {
 
-  Chapter1()
-
-  Racoon()
+  // FirstSip()
+  BasicRecipes()
 
 });
