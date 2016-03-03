@@ -4,7 +4,7 @@ import Algo0 from '../algo0';
 
 describe('Algo0 View', function() {
 
-  const {factorialize, palindrome, findLongestWord, titleCase, largestOfFour, end} = Algo0()
+  const {factorialize, palindrome, findLongestWord, titleCase, largestOfFour, end, repeat} = Algo0()
 
   it('Should run a few assertions', () => {
     expect(Algo0()).toBeDefined();
@@ -69,6 +69,19 @@ describe('Algo0 View', function() {
     });
     it('Should ignore case', () => {
       expect(end("NAME", "name")).toBe(true)
+    });
+  });
+
+  describe('repeat', () => {
+    it('Should repeat given string N times, when N positive integer provided as second argument', () => {
+      expect(repeat("*", 3)).toBe("***")
+      expect(repeat("aAa", 2)).toBe("aAaaAa")
+    });
+    it('Should return empty string, if N is negative', () => {
+      expect(repeat("test", -4)).toBe("")
+    });
+    it('Should return string, if N is 0', () => {
+      expect(repeat("test", 0)).toBe("test")
     });
   });
 

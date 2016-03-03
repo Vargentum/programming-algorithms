@@ -49,5 +49,17 @@ export default function Algo0 () {
     return new RegExp(`${ending}$`, 'gi').test(str)
   }
 
-  return {reverse, factorialize, palindrome, findLongestWord, titleCase, largestOfFour, end}
+  const repeat = function repeat(str, times) {
+    if (times > 0) {
+      return new Array(times+1).join(str)
+    }
+    else if (times < 0) {
+      return ''
+    }
+    else {
+      return str
+    }
+  }
+
+  return {reverse, factorialize, palindrome, findLongestWord, titleCase, largestOfFour, end, repeat}
 }
