@@ -61,5 +61,14 @@ export default function Algo0 () {
     }
   }
 
-  return {reverse, factorialize, palindrome, findLongestWord, titleCase, largestOfFour, end, repeat}
+  const truncate = function trunkate(str, limit, ending = '...') {
+    if (str.length <= limit) return str
+    return str
+      .split('')
+      .slice(0, limit > ending.length ? limit - ending.length : limit)
+      .concat([ending])
+      .join('')
+  }
+
+  return {reverse, factorialize, palindrome, findLongestWord, titleCase, largestOfFour, end, repeat, truncate}
 }

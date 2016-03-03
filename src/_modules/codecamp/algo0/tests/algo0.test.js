@@ -4,7 +4,7 @@ import Algo0 from '../algo0';
 
 describe('Algo0 View', function() {
 
-  const {factorialize, palindrome, findLongestWord, titleCase, largestOfFour, end, repeat} = Algo0()
+  const {factorialize, palindrome, findLongestWord, titleCase, largestOfFour, end, repeat, truncate} = Algo0()
 
   it('Should run a few assertions', () => {
     expect(Algo0()).toBeDefined();
@@ -83,6 +83,16 @@ describe('Algo0 View', function() {
     it('Should return string, if N is 0', () => {
       expect(repeat("test", 0)).toBe("test")
     });
+  });
+
+  describe('truncate', () => {
+    it('Should truncate string and add ellipsis.', () => {
+      expect(truncate("A-tisket a-tasket A green and yellow basket", 11)).toBe("A-tisket...")
+      expect(truncate("Peter Piper picked a peck of pickled peppers", 14)).toBe("Peter Piper...")
+      expect(truncate("Absolutely Longer", 2)).toBe("Ab...")
+      expect(truncate("A-", 1)).toBe("A...")
+    });
+      
   });
 
 });
