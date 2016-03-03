@@ -4,7 +4,7 @@ import Algo0 from '../algo0';
 
 describe('Algo0 View', function() {
 
-  let {factorialize, palindrome, findLongestWord, titleCase} = Algo0()
+  let {factorialize, palindrome, findLongestWord, titleCase, largestOfFour} = Algo0()
 
   it('Should run a few assertions', () => {
     expect(Algo0()).toBeDefined();
@@ -53,5 +53,13 @@ describe('Algo0 View', function() {
       expect(titleCase('')).toBe('')
     });
   })
+
+  describe('largestOfFour', () => {
+    it('Should return array of largest number for each proven sub array', () => {
+      expect(
+        largestOfFour([[13, 27, 18, 26], [4, 5, 1, 3], [32, 35, 37, 39], [1000, 1001, 857, 1]])
+      ).toEqual([27,5,39,1001])
+    });
+  });
 
 });

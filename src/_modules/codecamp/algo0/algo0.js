@@ -1,5 +1,8 @@
 'use strict';
 
+import {mapWith} from '../../js-allonge/unsorted/unsorted'
+
+
 export default function Algo0 () {
   const filterPunctuation = str => str.replace(/[^0-9a-z]/gi, '')
 
@@ -39,5 +42,8 @@ export default function Algo0 () {
       .join(' ')        
   }
 
-  return {reverse, factorialize, palindrome, findLongestWord, titleCase}
+  const getLargestNum = (arr) => arr.reduce((p, n) => p > n ? p : n)
+  const largestOfFour = mapWith(getLargestNum)
+
+  return {reverse, factorialize, palindrome, findLongestWord, titleCase, largestOfFour}
 }
