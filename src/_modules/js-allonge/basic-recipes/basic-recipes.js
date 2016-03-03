@@ -1,5 +1,9 @@
 'use strict';
 
+import 'babel-polyfill'
+import {mapWith} from '../unsorted/unsorted'
+
+
 export default function BasicRecipies () {
   
 
@@ -52,4 +56,67 @@ export default function BasicRecipies () {
           }
   */
 
+
+
+
+  /* K combinator (kestrel):
+    (x) => (y) => x  
+
+    exapmle tap
+  */
+
+  const tap = (value) =>
+    (fn) => {
+      typeof fn === 'function' && fn(value)
+      return value 
+    }
+
+  // tap('Vlad')((name) => console.log(`my name is ${name}`))// "My name is Vlad"
+
+
+
+  const tapUniversal = (value, fn) => {
+
+    let curried = (fn) => (
+      typeof fn === 'function' && fn(value),
+      value
+    )
+
+    return fn === undefined ? 
+      curried 
+      : 
+      curried(fn)
+  }
+
+
+  // tapUniversal('Vlad')((name) => console.log(`my name is ${name}`))// "My name is Vlad"
+  // tapUniversal('Vlad', (name) => console.log(`my name is ${name}`))// "My name is Vlad"
+
+
+
+
+
+
+  /*'maybe' recipe
+    
+    problem: 
+
+
+  */
+  const isSomething = (val) => val !== null && val !== undefined
+
+  const maybe = (fn) =>
+    function (...args) {
+      if (args.length === 0) return 
+      for (let arg of args) {
+        debugger
+        if (!isSomething(arg)) {
+          return 
+        }
+      }
+      return fn.apply(this, args)
+    } 
+
+  console.log(maybe((a,b,c) => a + b + c)(1,2,3)) //6
+  console.log(maybe((a,b,c) => a + b + c)(1,null,3)) // undefined
 }
