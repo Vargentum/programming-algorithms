@@ -52,4 +52,45 @@ export default function BasicRecipies () {
           }
   */
 
+
+
+
+  /* K combinator (kestrel):
+    (x) => (y) => x  
+
+    exapmle tap
+  */
+
+  const tap = (value) =>
+    (fn) => {
+      typeof fn === 'function' && fn(value)
+      return value 
+    }
+
+  tap('Vlad')((name) => console.log(`my name is ${name}`))// "My name is Vlad"
+
+
+
+  const tapUniversal = (value, fn) => {
+
+    let curried = (fn) => (
+      typeof fn === 'function' && fn(value),
+      value
+    )
+
+    return fn === undefined ? 
+      curried 
+      : 
+      curried(fn)
+  }
+
+
+  tapUniversal('Vlad')((name) => console.log(`my name is ${name}`))// "My name is Vlad"
+  tapUniversal('Vlad', (name) => console.log(`my name is ${name}`))// "My name is Vlad"
+
+
+
+
+
+
 }
