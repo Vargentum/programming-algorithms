@@ -45,5 +45,9 @@ export default function Algo0 () {
   const getLargestNum = (arr) => arr.reduce((p, n) => p > n ? p : n)
   const largestOfFour = mapWith(getLargestNum)
 
-  return {reverse, factorialize, palindrome, findLongestWord, titleCase, largestOfFour}
+  const end = function end(str, ending) {
+    return new RegExp(`${ending}$`, 'gi').test(str)
+  }
+
+  return {reverse, factorialize, palindrome, findLongestWord, titleCase, largestOfFour, end}
 }

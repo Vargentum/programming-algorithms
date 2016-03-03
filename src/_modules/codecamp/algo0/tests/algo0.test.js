@@ -4,7 +4,7 @@ import Algo0 from '../algo0';
 
 describe('Algo0 View', function() {
 
-  let {factorialize, palindrome, findLongestWord, titleCase, largestOfFour} = Algo0()
+  const {factorialize, palindrome, findLongestWord, titleCase, largestOfFour, end} = Algo0()
 
   it('Should run a few assertions', () => {
     expect(Algo0()).toBeDefined();
@@ -59,6 +59,16 @@ describe('Algo0 View', function() {
       expect(
         largestOfFour([[13, 27, 18, 26], [4, 5, 1, 3], [32, 35, 37, 39], [1000, 1001, 857, 1]])
       ).toEqual([27,5,39,1001])
+    });
+  });
+
+  describe('end', () => {
+    it('Should check compatibility ending or first argument string with second argument one', () => {
+      expect(end("He has to give me a new name", "name")).toBe(true)
+      expect(end("He has to give me a new thing", "name")).toBe(false)
+    });
+    it('Should ignore case', () => {
+      expect(end("NAME", "name")).toBe(true)
     });
   });
 
