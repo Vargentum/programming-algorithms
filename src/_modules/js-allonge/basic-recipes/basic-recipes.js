@@ -17,10 +17,10 @@ export default function BasicRecipies () {
   const greet = (from, to) => `Hello ${to}, my name is ${from}`
  
   const greetFromVlad = callFirst(greet, 'Vlad')
-  console.log(greetFromVlad('Tom'))
+  // console.log(greetFromVlad('Tom'))
 
   const greetToMary = callLast(greet, 'Mary')
-  console.log(greetToMary('Tom'))
+  // console.log(greetToMary('Tom'))
 
 
 
@@ -39,7 +39,7 @@ export default function BasicRecipies () {
 
 
   const unary = (fn) => (...args) => fn(args[0])
-  console.log(['1','2','3'].map(unary(parseFloat)))
+  // console.log(['1','2','3'].map(unary(parseFloat)))
 
 
   /* Recipe from book: seems they are equal
