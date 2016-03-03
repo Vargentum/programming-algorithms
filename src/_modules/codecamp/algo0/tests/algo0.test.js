@@ -4,7 +4,7 @@ import Algo0 from '../algo0';
 
 describe('Algo0 View', function() {
 
-  const {factorialize, palindrome, findLongestWord, titleCase, largestOfFour, end, repeat, truncate} = Algo0()
+  const {factorialize, palindrome, findLongestWord, titleCase, largestOfFour, end, repeat, truncate, chunk} = Algo0()
 
   it('Should run a few assertions', () => {
     expect(Algo0()).toBeDefined();
@@ -92,7 +92,15 @@ describe('Algo0 View', function() {
       expect(truncate("Absolutely Longer", 2)).toBe("Ab...")
       expect(truncate("A-", 1)).toBe("A...")
     });
-      
+  });
+
+  describe('chunk', () => {
+    it('Should break array into groups of specified size', () => {
+      // expect(chunk([1,2,3,4], 2)).toEqual([[1,2], [3,4]])
+      // expect(chunk([1,2,3,4], 3)).toEqual([[1,2,3], [4]])
+      // expect(chunk([1,2,3,4,5,6], 3)).toEqual([[1,2,3], [4,5,6]])
+      expect(chunk([0,1,2,3,4,5], 2)).toEqual([[0,1], [2,3], [4,5]])
+    });
   });
 
 });

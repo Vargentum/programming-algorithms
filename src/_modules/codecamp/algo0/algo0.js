@@ -70,5 +70,15 @@ export default function Algo0 () {
       .join('')
   }
 
-  return {reverse, factorialize, palindrome, findLongestWord, titleCase, largestOfFour, end, repeat, truncate}
+  const chunk = function chunk (arr, size) {
+    let result = []
+    let i = 0
+    while(true) {
+      if (i > arr.length - 1) return result
+      result.push(arr.slice(i, i+size))
+      i += size
+    }
+  }
+
+  return {reverse, factorialize, palindrome, findLongestWord, titleCase, largestOfFour, end, repeat, truncate, chunk}
 }
