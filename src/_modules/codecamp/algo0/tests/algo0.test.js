@@ -4,7 +4,7 @@ import Algo0 from '../algo0';
 
 describe('Algo0 View', function() {
 
-  let {factorialize, palindrome, findLongestWord, titleCase} = Algo0()
+  const {factorialize, palindrome, findLongestWord, titleCase, largestOfFour, end, repeat, truncate, chunk} = Algo0()
 
   it('Should run a few assertions', () => {
     expect(Algo0()).toBeDefined();
@@ -53,5 +53,54 @@ describe('Algo0 View', function() {
       expect(titleCase('')).toBe('')
     });
   })
+
+  describe('largestOfFour', () => {
+    it('Should return array of largest number for each proven sub array', () => {
+      expect(
+        largestOfFour([[13, 27, 18, 26], [4, 5, 1, 3], [32, 35, 37, 39], [1000, 1001, 857, 1]])
+      ).toEqual([27,5,39,1001])
+    });
+  });
+
+  describe('end', () => {
+    it('Should check compatibility ending or first argument string with second argument one', () => {
+      expect(end("He has to give me a new name", "name")).toBe(true)
+      expect(end("He has to give me a new thing", "name")).toBe(false)
+    });
+    it('Should ignore case', () => {
+      expect(end("NAME", "name")).toBe(true)
+    });
+  });
+
+  describe('repeat', () => {
+    it('Should repeat given string N times, when N positive integer provided as second argument', () => {
+      expect(repeat("*", 3)).toBe("***")
+      expect(repeat("aAa", 2)).toBe("aAaaAa")
+    });
+    it('Should return empty string, if N is negative', () => {
+      expect(repeat("test", -4)).toBe("")
+    });
+    it('Should return string, if N is 0', () => {
+      expect(repeat("test", 0)).toBe("test")
+    });
+  });
+
+  describe('truncate', () => {
+    it('Should truncate string and add ellipsis.', () => {
+      expect(truncate("A-tisket a-tasket A green and yellow basket", 11)).toBe("A-tisket...")
+      expect(truncate("Peter Piper picked a peck of pickled peppers", 14)).toBe("Peter Piper...")
+      expect(truncate("Absolutely Longer", 2)).toBe("Ab...")
+      expect(truncate("A-", 1)).toBe("A...")
+    });
+  });
+
+  describe('chunk', () => {
+    it('Should break array into groups of specified size', () => {
+      // expect(chunk([1,2,3,4], 2)).toEqual([[1,2], [3,4]])
+      // expect(chunk([1,2,3,4], 3)).toEqual([[1,2,3], [4]])
+      // expect(chunk([1,2,3,4,5,6], 3)).toEqual([[1,2,3], [4,5,6]])
+      expect(chunk([0,1,2,3,4,5], 2)).toEqual([[0,1], [2,3], [4,5]])
+    });
+  });
 
 });

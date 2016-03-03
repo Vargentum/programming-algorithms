@@ -1,6 +1,6 @@
 'use strict';
 
-export default () => {
+export default (function () {
 
   // DECORATOR examples
 
@@ -8,11 +8,11 @@ export default () => {
 
   // 1. compose
 
-  let reverse = str => str.split('').reverse().join('')
-  let simplify = str => str.replace(/[^0-9a-z]/gi, '').toLowerCase()
+  const reverse = str => str.split('').reverse().join('')
+  const simplify = str => str.replace(/[^0-9a-z]/gi, '').toLowerCase()
 
-  let compose = (a, b) => (c) => a(b(c))
-  let simplifiedReverse = compose(reverse, simplify)
+  const compose = (a, b) => (c) => a(b(c))
+  const simplifiedReverse = compose(reverse, simplify)
 
   // console.log(simplifiedReverse('Doc, note,')) //etoncod
 
@@ -21,8 +21,8 @@ export default () => {
 
   // 2. mapWith
 
-  let mapWith = (fn) => (array) => array.map(fn)
-  let squareArray = mapWith(n => n * 2)
+  const mapWith = (fn) => (array) => array.map(fn)
+  const squareArray = mapWith(n => n * 2)
 
   // console.log(squareArray([1,2,3])) // [2,4,6]
 
@@ -32,11 +32,11 @@ export default () => {
 
   // Fat arrow scope
 
-  let scopeOuter = function() {
+  const scopeOuter = function() {
     return mapWith((cell) => cell * arguments[0])([1,2,3,4,5])
   }
 
-  let scopeInner = function() {
+  const scopeInner = function() {
     return mapWith(function (cell) { return cell * arguments[0]})([1,2,3,4,5])
   }
 
@@ -44,5 +44,5 @@ export default () => {
   // console.log(scopeInner(3)) // [2,4,6,8,10]  //cell * cell
 
 
-
-}
+  return{compose, mapWith}
+}())
