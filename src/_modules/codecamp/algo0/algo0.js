@@ -1,6 +1,6 @@
 'use strict';
 
-import {mapWith} from '../../js-allonge/unsorted/unsorted'
+import {mapWith, compose} from '../../js-allonge/unsorted/unsorted'
 
 
 export default function Algo0 () {
@@ -19,8 +19,8 @@ export default function Algo0 () {
   }
 
   const palindrome = function palindrome (str) {
-    let simplify = str => filterPunctuation(str).toLowerCase()
-    return simplify(str) === simplify(reverse(str))
+    let getRawChars = str => filterPunctuation(str).toLowerCase()
+    return getRawChars(str) === getRawChars(reverse(str))
   }
 
   const findLongestWord = function findLongestWord (str) {
@@ -84,5 +84,23 @@ export default function Algo0 () {
     return arr.slice(startPoint)
   }
 
-  return {reverse, factorialize, palindrome, findLongestWord, titleCase, largestOfFour, end, repeat, truncate, chunk, slasher}
+  const mutation = function mutation([orig, test]) {
+    let getOrderedChars = (str) => filterPunctuation(str).split('').sort().join('')
+    return new RegExp(`${getOrderedChars(test)}`, 'i').test(getOrderedChars(orig))
+  }
+
+  return {
+    reverse
+   ,factorialize
+   ,palindrome
+   ,findLongestWord
+   ,titleCase
+   ,largestOfFour
+   ,end
+   ,repeat
+   ,truncate
+   ,chunk
+   ,slasher
+   ,mutation
+ }
 }

@@ -4,7 +4,18 @@ import Algo0 from '../algo0';
 
 describe('Algo0 View', function() {
 
-  const {factorialize, palindrome, findLongestWord, titleCase, largestOfFour, end, repeat, truncate, chunk, slasher} = Algo0()
+  const {
+    factorialize
+   ,palindrome
+   ,findLongestWord
+   ,titleCase
+   ,largestOfFour
+   ,end
+   ,repeat
+   ,truncate
+   ,chunk
+   ,slasher
+   ,mutation} = Algo0()
 
   it('Should run a few assertions', () => {
     expect(Algo0()).toBeDefined();
@@ -110,4 +121,23 @@ describe('Algo0 View', function() {
       expect(slasher([1,2,3,4], 10)).toEqual([])
     });
   });
+
+  describe('mutation', () => {
+    it('Should return true if second array item contains all letters from first one', () => {
+      expect(mutation(['hello', 'HELLo'])).toBe(true)
+      expect(mutation(['Alien', 'line'])).toBe(true)
+    });
+    it('Should return false overwise', () => {
+      expect(mutation(['hello', 'helx'])).toBe(false)
+      expect(mutation(['Alien', 'list'])).toBe(false)
+    });
+  });
+
+
+  // describe('', () => {
+  //   it('Should ', () => {
+  //     expect().toEqual()
+  //     expect().toBe()
+  //   });
+  // });
 });
