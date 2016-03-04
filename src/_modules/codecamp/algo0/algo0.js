@@ -39,7 +39,7 @@ export default function Algo0 () {
         let firstLetter = w.length ? w[0].toUpperCase() : ''
         return w.replace(/^./, firstLetter)
       })
-      .join(' ')        
+      .join(' ')
   }
 
   const getLargestNum = (arr) => arr.reduce((p, n) => p > n ? p : n)
@@ -85,8 +85,11 @@ export default function Algo0 () {
   }
 
   const mutation = function mutation([orig, test]) {
-    let getOrderedChars = (str) => filterPunctuation(str).split('').sort().join('')
-    return new RegExp(`${getOrderedChars(test)}`, 'i').test(getOrderedChars(orig))
+    let misMatched = test.toLowerCase().split('').forEach(x => {
+      if (orig.toLowerCase().indexOf(x) === -1) return true
+    })
+    debugger
+    return !misMatched
   }
 
   return {

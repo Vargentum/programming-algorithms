@@ -94,6 +94,12 @@ export default function BasicRecipies () {
 
 
 
+  /*Thru*/
+  const thru = (value, fn) => {
+    let curried = fn => typeof fn === 'function' ? fn(value) : value
+    return fn === undefined ? curried : curried(fn)
+  }
+
 
 
 
