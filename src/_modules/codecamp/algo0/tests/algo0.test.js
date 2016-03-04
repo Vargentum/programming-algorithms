@@ -4,7 +4,7 @@ import Algo0 from '../algo0';
 
 describe('Algo0 View', function() {
 
-  const {factorialize, palindrome, findLongestWord, titleCase, largestOfFour, end, repeat, truncate, chunk} = Algo0()
+  const {factorialize, palindrome, findLongestWord, titleCase, largestOfFour, end, repeat, truncate, chunk, slasher} = Algo0()
 
   it('Should run a few assertions', () => {
     expect(Algo0()).toBeDefined();
@@ -96,11 +96,18 @@ describe('Algo0 View', function() {
 
   describe('chunk', () => {
     it('Should break array into groups of specified size', () => {
-      // expect(chunk([1,2,3,4], 2)).toEqual([[1,2], [3,4]])
-      // expect(chunk([1,2,3,4], 3)).toEqual([[1,2,3], [4]])
-      // expect(chunk([1,2,3,4,5,6], 3)).toEqual([[1,2,3], [4,5,6]])
+      expect(chunk([1,2,3,4], 2)).toEqual([[1,2], [3,4]])
+      expect(chunk([1,2,3,4], 3)).toEqual([[1,2,3], [4]])
+      expect(chunk([1,2,3,4,5,6], 3)).toEqual([[1,2,3], [4,5,6]])
       expect(chunk([0,1,2,3,4,5], 2)).toEqual([[0,1], [2,3], [4,5]])
     });
   });
 
+  describe('slasher', () => {
+    it('Should cropp N items from head of array', () => {
+      expect(slasher([1,2,3,4], 2)).toEqual([3,4])
+      expect(slasher([1,2,3,4], 0)).toEqual([1,2,3,4])
+      expect(slasher([1,2,3,4], 10)).toEqual([])
+    });
+  });
 });

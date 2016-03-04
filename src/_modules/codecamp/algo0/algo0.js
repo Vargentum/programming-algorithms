@@ -80,5 +80,9 @@ export default function Algo0 () {
     }
   }
 
-  return {reverse, factorialize, palindrome, findLongestWord, titleCase, largestOfFour, end, repeat, truncate, chunk}
+  const slasher = function slasher(arr, startPoint) {
+    return arr.slice(startPoint)
+  }
+
+  return {reverse, factorialize, palindrome, findLongestWord, titleCase, largestOfFour, end, repeat, truncate, chunk, slasher}
 }
