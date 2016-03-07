@@ -100,6 +100,14 @@ export default function Algo0 () {
     return arr.filter(x => toRemove.indexOf(x) === -1)
   }
 
+  const where = function where (arr, val) {
+    return arr
+      .concat([val])
+      .sort((a,b) => a - b)
+      .indexOf(val)
+  }
+
+
   return {
     reverse
    ,factorialize
@@ -115,5 +123,6 @@ export default function Algo0 () {
    ,mutation
    ,bouncer
    ,destroyer
+   ,where
  }
 }

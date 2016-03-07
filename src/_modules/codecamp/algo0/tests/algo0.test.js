@@ -18,6 +18,7 @@ describe('Algo0 View', function() {
    ,mutation
    ,bouncer
    ,destroyer
+   ,where
 
  } = Algo0()
 
@@ -154,7 +155,20 @@ describe('Algo0 View', function() {
     });
   });
 
-    // describe('', () => {
+  describe('where', () => {
+    it('Should return index of inserted second argument into sorted array, providen in first argument', () => {
+      expect(where([1,2,4,5], 3)).toEqual(2)
+      expect(where([1,2,9,100,5], 20)).toBe(4)
+      expect(where([-11,2,3,-4,5], 0)).toBe(2)
+      expect(where([1,2,3,3,4], 3)).toBe(2)
+    });
+
+    it('Should correct work with these cases', () => {
+      expect(where([3,10,5], 3)).toEqual(0)
+    });
+  });
+
+  // describe('', () => {
   //   it('Should ', () => {
   //     expect().toEqual()
   //     expect().toBe()
