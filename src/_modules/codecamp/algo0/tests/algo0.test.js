@@ -19,6 +19,7 @@ describe('Algo0 View', function() {
    ,bouncer
    ,destroyer
    ,where
+   ,rot13
 
  } = Algo0()
 
@@ -165,6 +166,14 @@ describe('Algo0 View', function() {
 
     it('Should correct work with these cases', () => {
       expect(where([3,10,5], 3)).toEqual(0)
+    });
+  });
+
+  describe('rot13', () => {
+    it('Should return decoded string', () => {
+      expect(rot13("URYYB")).toEqual("HELLO")
+      expect(rot13("SERR PBQR PNZC")).toEqual("FREE CODE CAMP")
+      expect(rot13("GUR DHVPX OEBJA QBT WHZCRQ BIRE GUR YNML SBK.")).toBe("THE QUICK BROWN DOG JUMPED OVER THE LAZY FOX.")
     });
   });
 

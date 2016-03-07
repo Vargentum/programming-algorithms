@@ -107,6 +107,26 @@ export default function Algo0 () {
       .indexOf(val)
   }
 
+  const rot13 = function rot13(str) {
+    const ciphedChars = {start: 65, end: 90} //from A to Z
+    const shift = 13
+    const {start, end} = ciphedChars
+    let getChiphedFrom = (n) => {
+      return n + shift > end 
+        ? n + shift - end + start - 1
+        : n + shift
+    }
+    return str
+      .split('')
+      .map(x => {
+        let code = x.charCodeAt(0)
+        return code >= start && code <= end 
+          ? String.fromCharCode(getChiphedFrom(code))
+          : x
+      })
+      .join('')
+  }
+
 
   return {
     reverse
@@ -124,5 +144,6 @@ export default function Algo0 () {
    ,bouncer
    ,destroyer
    ,where
+   ,rot13
  }
 }
