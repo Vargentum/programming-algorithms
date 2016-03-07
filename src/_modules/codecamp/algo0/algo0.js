@@ -92,6 +92,10 @@ export default function Algo0 () {
     return !misMatched
   }
 
+  const bouncer = function bouncer(arr) {
+    return arr.filter(x => !!x)
+  }
+
   return {
     reverse
    ,factorialize
@@ -105,5 +109,6 @@ export default function Algo0 () {
    ,chunk
    ,slasher
    ,mutation
+   ,bouncer
  }
 }

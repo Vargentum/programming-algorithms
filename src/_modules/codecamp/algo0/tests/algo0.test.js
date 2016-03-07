@@ -15,7 +15,10 @@ describe('Algo0 View', function() {
    ,truncate
    ,chunk
    ,slasher
-   ,mutation} = Algo0()
+   ,mutation
+   ,bouncer
+
+ } = Algo0()
 
   it('Should run a few assertions', () => {
     expect(Algo0()).toBeDefined();
@@ -122,21 +125,28 @@ describe('Algo0 View', function() {
     });
   });
 
-  describe('mutation', () => {
-    it('Should return true if second array item contains all letters from first one', () => {
-      expect(mutation(['hello', 'HELLo'])).toBe(true)
-      expect(mutation(['Alien', 'line'])).toBe(true)
-      expect(mutation(['Mary', 'Army'])).toBe(true)
-      expect(mutation(['Mary', 'Aarmy'])).toBe(true)
-    });
-    it('Should return false overwise', () => {
-      expect(mutation(['hello', 'helx'])).toBe(false)
-      expect(mutation(['Alien', 'list'])).toBe(false)
+  // describe('mutation', () => {
+  //   it('Should return true if second array item contains all letters from first one', () => {
+  //     expect(mutation(['hello', 'HELLo'])).toBe(true)
+  //     expect(mutation(['Alien', 'line'])).toBe(true)
+  //     expect(mutation(['Mary', 'Army'])).toBe(true)
+  //     expect(mutation(['Mary', 'Aarmy'])).toBe(true)
+  //   });
+  //   it('Should return false overwise', () => {
+  //     expect(mutation(['hello', 'helx'])).toBe(false)
+  //     expect(mutation(['Alien', 'list'])).toBe(false)
+  //   });
+  // });
+
+
+  describe('bouncer', () => {
+    it('Should remove all falsy values from array', () => {
+      expect(bouncer([1,2,0])).toEqual([1,2])
+      expect(bouncer([false,null,0,NaN, undefined])).toEqual([])
     });
   });
 
-
-  // describe('', () => {
+    // describe('', () => {
   //   it('Should ', () => {
   //     expect().toEqual()
   //     expect().toBe()
