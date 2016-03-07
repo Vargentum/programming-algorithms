@@ -17,6 +17,7 @@ describe('Algo0 View', function() {
    ,slasher
    ,mutation
    ,bouncer
+   ,destroyer
 
  } = Algo0()
 
@@ -143,6 +144,13 @@ describe('Algo0 View', function() {
     it('Should remove all falsy values from array', () => {
       expect(bouncer([1,2,0])).toEqual([1,2])
       expect(bouncer([false,null,0,NaN, undefined])).toEqual([])
+    });
+  });
+
+  describe('destroyer', () => {
+    it('Should remove from first argument (array), each of any following arguments', () => {
+      expect(destroyer([1,2,3,4,5],1,2,3)).toEqual([4,5])
+      expect(destroyer([false, null, 'str'], false)).toEqual([null, 'str'])
     });
   });
 

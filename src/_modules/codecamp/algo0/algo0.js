@@ -96,6 +96,10 @@ export default function Algo0 () {
     return arr.filter(x => !!x)
   }
 
+  const destroyer = function destroyer (arr, ...toRemove) {
+    return arr.filter(x => toRemove.indexOf(x) === -1)
+  }
+
   return {
     reverse
    ,factorialize
@@ -110,5 +114,6 @@ export default function Algo0 () {
    ,slasher
    ,mutation
    ,bouncer
+   ,destroyer
  }
 }
