@@ -115,7 +115,6 @@ export default function BasicRecipies () {
     function (...args) {
       if (args.length === 0) return 
       for (let arg of args) {
-        debugger
         if (!isSomething(arg)) {
           return 
         }
