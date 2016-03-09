@@ -1,13 +1,30 @@
 'use strict';
 
-import Algo0 from '../algo0';
+import BasicAlgorhitms from '../basic';
 
-describe('Algo0 View', function() {
+describe('BasicAlgorhitms', function() {
 
-  const {factorialize, palindrome, findLongestWord, titleCase, largestOfFour, end, repeat, truncate, chunk} = Algo0()
+  const {
+    factorialize
+   ,palindrome
+   ,findLongestWord
+   ,titleCase
+   ,largestOfFour
+   ,end
+   ,repeat
+   ,truncate
+   ,chunk
+   ,slasher
+   ,mutation
+   ,bouncer
+   ,destroyer
+   ,where
+   ,rot13
+
+ } = BasicAlgorhitms()
 
   it('Should run a few assertions', () => {
-    expect(Algo0()).toBeDefined();
+    expect(BasicAlgorhitms()).toBeDefined();
   });
 
 
@@ -96,11 +113,74 @@ describe('Algo0 View', function() {
 
   describe('chunk', () => {
     it('Should break array into groups of specified size', () => {
-      // expect(chunk([1,2,3,4], 2)).toEqual([[1,2], [3,4]])
-      // expect(chunk([1,2,3,4], 3)).toEqual([[1,2,3], [4]])
-      // expect(chunk([1,2,3,4,5,6], 3)).toEqual([[1,2,3], [4,5,6]])
+      expect(chunk([1,2,3,4], 2)).toEqual([[1,2], [3,4]])
+      expect(chunk([1,2,3,4], 3)).toEqual([[1,2,3], [4]])
+      expect(chunk([1,2,3,4,5,6], 3)).toEqual([[1,2,3], [4,5,6]])
       expect(chunk([0,1,2,3,4,5], 2)).toEqual([[0,1], [2,3], [4,5]])
     });
   });
 
+  describe('slasher', () => {
+    it('Should cropp N items from head of array', () => {
+      expect(slasher([1,2,3,4], 2)).toEqual([3,4])
+      expect(slasher([1,2,3,4], 0)).toEqual([1,2,3,4])
+      expect(slasher([1,2,3,4], 10)).toEqual([])
+    });
+  });
+
+  // describe('mutation', () => {
+  //   it('Should return true if second array item contains all letters from first one', () => {
+  //     expect(mutation(['hello', 'HELLo'])).toBe(true)
+  //     expect(mutation(['Alien', 'line'])).toBe(true)
+  //     expect(mutation(['Mary', 'Army'])).toBe(true)
+  //     expect(mutation(['Mary', 'Aarmy'])).toBe(true)
+  //   });
+  //   it('Should return false overwise', () => {
+  //     expect(mutation(['hello', 'helx'])).toBe(false)
+  //     expect(mutation(['Alien', 'list'])).toBe(false)
+  //   });
+  // });
+
+
+  describe('bouncer', () => {
+    it('Should remove all falsy values from array', () => {
+      expect(bouncer([1,2,0])).toEqual([1,2])
+      expect(bouncer([false,null,0,NaN, undefined])).toEqual([])
+    });
+  });
+
+  describe('destroyer', () => {
+    it('Should remove from first argument (array), each of any following arguments', () => {
+      expect(destroyer([1,2,3,4,5],1,2,3)).toEqual([4,5])
+      expect(destroyer([false, null, 'str'], false)).toEqual([null, 'str'])
+    });
+  });
+
+  describe('where', () => {
+    it('Should return index of inserted second argument into sorted array, providen in first argument', () => {
+      expect(where([1,2,4,5], 3)).toEqual(2)
+      expect(where([1,2,9,100,5], 20)).toBe(4)
+      expect(where([-11,2,3,-4,5], 0)).toBe(2)
+      expect(where([1,2,3,3,4], 3)).toBe(2)
+    });
+
+    it('Should correct work with these cases', () => {
+      expect(where([3,10,5], 3)).toEqual(0)
+    });
+  });
+
+  describe('rot13', () => {
+    it('Should return decoded string', () => {
+      expect(rot13("URYYB")).toEqual("HELLO")
+      expect(rot13("SERR PBQR PNZC")).toEqual("FREE CODE CAMP")
+      expect(rot13("GUR DHVPX OEBJA QBT WHZCRQ BIRE GUR YNML SBK.")).toBe("THE QUICK BROWN DOG JUMPED OVER THE LAZY FOX.")
+    });
+  });
+
+  // describe('', () => {
+  //   it('Should ', () => {
+  //     expect().toEqual()
+  //     expect().toBe()
+  //   });
+  // });
 });

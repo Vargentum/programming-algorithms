@@ -94,6 +94,12 @@ export default function BasicRecipies () {
 
 
 
+  /*Thru*/
+  const thru = (value, fn) => {
+    let curried = fn => typeof fn === 'function' ? fn(value) : value
+    return fn === undefined ? curried : curried(fn)
+  }
+
 
 
 
@@ -109,7 +115,6 @@ export default function BasicRecipies () {
     function (...args) {
       if (args.length === 0) return 
       for (let arg of args) {
-        debugger
         if (!isSomething(arg)) {
           return 
         }
@@ -117,8 +122,8 @@ export default function BasicRecipies () {
       return fn.apply(this, args)
     } 
 
-  console.log(maybe((a,b,c) => a + b + c)(1,2,3)) //6
-  console.log(maybe((a,b,c) => a + b + c)(1,null,3)) // undefined
+  // console.log(maybe((a,b,c) => a + b + c)(1,2,3)) //6
+  // console.log(maybe((a,b,c) => a + b + c)(1,null,3)) // undefined
 
 
 
@@ -138,8 +143,8 @@ export default function BasicRecipies () {
   }
 
   let onceGreet = once(() => "Only once")
-  console.log(onceGreet()) // "Only once"
-  console.log(onceGreet()) // undefined
+  // console.log(onceGreet()) // "Only once"
+  // console.log(onceGreet()) // undefined
 
 
 

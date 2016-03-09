@@ -1,9 +1,9 @@
 'use strict';
 
-import {mapWith} from '../../js-allonge/unsorted/unsorted'
+import {mapWith, compose} from '../../js-allonge/unsorted/unsorted'
 
 
-export default function Algo0 () {
+export default function () {
   const filterPunctuation = str => str.replace(/[^0-9a-z]/gi, '')
 
   const reverse = function reverse(str) {
@@ -19,8 +19,8 @@ export default function Algo0 () {
   }
 
   const palindrome = function palindrome (str) {
-    let simplify = str => filterPunctuation(str).toLowerCase()
-    return simplify(str) === simplify(reverse(str))
+    let getRawChars = str => filterPunctuation(str).toLowerCase()
+    return getRawChars(str) === getRawChars(reverse(str))
   }
 
   const findLongestWord = function findLongestWord (str) {
@@ -39,7 +39,7 @@ export default function Algo0 () {
         let firstLetter = w.length ? w[0].toUpperCase() : ''
         return w.replace(/^./, firstLetter)
       })
-      .join(' ')        
+      .join(' ')
   }
 
   const getLargestNum = (arr) => arr.reduce((p, n) => p > n ? p : n)
@@ -80,5 +80,70 @@ export default function Algo0 () {
     }
   }
 
-  return {reverse, factorialize, palindrome, findLongestWord, titleCase, largestOfFour, end, repeat, truncate, chunk}
+  const slasher = function slasher(arr, startPoint) {
+    return arr.slice(startPoint)
+  }
+
+  const mutation = function mutation([orig, test]) {
+    let misMatched = test.toLowerCase().split('').forEach(x => {
+      if (orig.toLowerCase().indexOf(x) === -1) return true
+    })
+    debugger
+    return !misMatched
+  }
+
+  const bouncer = function bouncer(arr) {
+    return arr.filter(x => !!x)
+  }
+
+  const destroyer = function destroyer (arr, ...toRemove) {
+    return arr.filter(x => toRemove.indexOf(x) === -1)
+  }
+
+  const where = function where (arr, val) {
+    return arr
+      .concat([val])
+      .sort((a,b) => a - b)
+      .indexOf(val)
+  }
+
+  const rot13 = function rot13(str) {
+    const ciphedChars = {start: 65, end: 90} //from A to Z
+    const shift = 13
+    const {start, end} = ciphedChars
+    let getChiphedFrom = (n) => {
+      return n + shift > end 
+        ? n + shift - end + start - 1
+        : n + shift
+    }
+    return str
+      .split('')
+      .map(x => {
+        let code = x.charCodeAt(0)
+        return code >= start && code <= end 
+          ? String.fromCharCode(getChiphedFrom(code))
+          : x
+      })
+      .join('')
+  }
+
+
+  return {
+    reverse
+   ,factorialize
+   ,palindrome
+   ,findLongestWord
+   ,titleCase
+   ,largestOfFour
+   ,end
+   ,repeat
+   ,truncate
+   ,chunk
+   ,slasher
+   ,mutation
+   ,bouncer
+   ,destroyer
+   ,where
+   ,rot13
+  }
 }
