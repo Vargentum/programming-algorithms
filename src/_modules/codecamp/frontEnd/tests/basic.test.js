@@ -1,8 +1,8 @@
 'use strict';
 
-import FrontEnd from '../frontEnd0';
+import BasicAlgorhitms from '../basic';
 
-describe('FrontEnd View', function() {
+describe('BasicAlgorhitms', function() {
 
   const {
     factorialize
@@ -21,10 +21,10 @@ describe('FrontEnd View', function() {
    ,where
    ,rot13
 
- } = FrontEnd()
+ } = BasicAlgorhitms()
 
   it('Should run a few assertions', () => {
-    expect(FrontEnd()).toBeDefined();
+    expect(BasicAlgorhitms()).toBeDefined();
   });
 
 
