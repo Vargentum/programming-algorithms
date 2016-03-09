@@ -8,6 +8,7 @@ describe('Advanced Algorithms', () => {
     sumAll
     ,diff
     ,convert
+    ,where
 
   } = AdvancedAlgorhitms()
 
@@ -60,4 +61,36 @@ describe('Advanced Algorithms', () => {
     });
   });
 
+
+
+  describe('where', () => {
+    it('Should filter collection by providen key/value pair', () => {
+      expect(where(
+        [
+          {name: "Vlad", age:22},
+          {name: "Tom", age:56}
+        ],
+        {name: "Vlad"}
+        )).toEqual([{name: "Vlad", age:22}])
+      expect(
+        where(
+          [
+            { "a": 1, "b": 2 },
+            { "a": 1 },
+            { "a": 1, "b": 2, "c": 2 }
+          ], 
+          { "a": 1, "b": 2 })).toEqual(
+            [
+              { "a": 1, "b": 2 },
+              { "a": 1, "b": 2, "c": 2 }
+            ]
+          )
+    });
+  });
+
+  // describe('', () => {
+  //   it('Should ', () => {
+  //     expect().toEqual()
+  //   });
+  // });
 })

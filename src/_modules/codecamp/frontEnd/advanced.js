@@ -29,7 +29,6 @@ export default function() {
       ,V: 5
       ,I: 1
     }
-
     let integers = []
        ,romans = []
 
@@ -37,9 +36,6 @@ export default function() {
       integers.push(digitsMap[d])
       romans.push(d)
     }
-
-
-
     return num
       .toString()
       .split('')
@@ -67,9 +63,19 @@ export default function() {
       }, '')
   }
 
+  const where = function where(coll, pred) {
+    return coll.filter(entry => {
+      return Object
+        .keys(pred)
+        .every(key => entry[key] && entry[key] === pred[key])
+    })
+  }
+
+
   return {
     sumAll
     ,diff
     ,convert
+    ,where
   }
 }
