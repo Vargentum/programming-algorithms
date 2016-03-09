@@ -5,8 +5,9 @@ import AdvancedAlgorhitms from '../advanced';
 describe('Advanced Algorithms', () => {
 
   const {
-    sumAll,
-    diff
+    sumAll
+    ,diff
+    ,convert
 
   } = AdvancedAlgorhitms()
 
@@ -31,11 +32,32 @@ describe('Advanced Algorithms', () => {
     });
   });
 
-  // describe('', () => {
-  //   it('Should ', () => {
-  //     expect().toEqual()
-  //     expect().toBe()
-  //   });
-  // });
+  describe('convert', () => {
+
+    it('Should correctly convert basic Roman discharge', () => {
+      expect(convert(1)).toBe('I')
+      expect(convert(5)).toBe('V')
+      expect(convert(10)).toBe('X')
+      expect(convert(50)).toBe('L')
+      expect(convert(100)).toBe('C')
+      expect(convert(500)).toBe('D')
+      expect(convert(1000)).toBe('M')
+    });
+    
+    it('Should properly add discharges', () => {
+      expect(convert(3)).toBe('III')
+      expect(convert(2000)).toBe('MM')
+    });
+    
+    it('Should properly add different discharges', () => {
+      expect(convert(8)).toBe('VIII')
+      expect(convert(357)).toBe('CCCLVII')
+      expect(convert(1394)).toBe('MCCCXCIV')
+    });
+    it('Should properly distract different discharges', () => {
+      expect(convert(9)).toBe('IX')
+      expect(convert(444)).toBe('CDXLIV')
+    });
+  });
 
 })
