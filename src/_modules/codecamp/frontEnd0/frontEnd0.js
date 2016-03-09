@@ -3,7 +3,7 @@
 import {mapWith, compose} from '../../js-allonge/unsorted/unsorted'
 
 
-export default function Algo0 () {
+export default function FrontEnd0 () {
   const filterPunctuation = str => str.replace(/[^0-9a-z]/gi, '')
 
   const reverse = function reverse(str) {
@@ -145,5 +145,5 @@ export default function Algo0 () {
    ,destroyer
    ,where
    ,rot13
- }
+  }
 }

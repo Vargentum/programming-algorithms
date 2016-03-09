@@ -1,8 +1,8 @@
 'use strict';
 
-import Algo0 from '../algo0';
+import FrontEnd from '../frontEnd0';
 
-describe('Algo0 View', function() {
+describe('FrontEnd View', function() {
 
   const {
     factorialize
@@ -21,10 +21,10 @@ describe('Algo0 View', function() {
    ,where
    ,rot13
 
- } = Algo0()
+ } = FrontEnd()
 
   it('Should run a few assertions', () => {
-    expect(Algo0()).toBeDefined();
+    expect(FrontEnd()).toBeDefined();
   });
 
 
