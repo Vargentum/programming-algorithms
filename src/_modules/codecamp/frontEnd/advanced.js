@@ -12,8 +12,15 @@ export default function() {
     return result
   }
 
+  const diff = function diff (a1, a2) {
+    return [].concat(
+      a1.filter(x => a2.indexOf(x) === -1),
+      a2.filter(x => a1.indexOf(x) === -1)
+    )
+  }
 
   return {
-    sumAll
+    sumAll,
+    diff
   }
 }
