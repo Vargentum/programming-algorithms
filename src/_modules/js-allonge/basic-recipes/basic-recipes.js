@@ -122,6 +122,6 @@ export default function BasicRecipies () {
       return fn.apply(this, args)
     } 
 
-  console.log(maybe((a,b,c) => a + b + c)(1,2,3)) //6
-  console.log(maybe((a,b,c) => a + b + c)(1,null,3)) // undefined
+  // console.log(maybe((a,b,c) => a + b + c)(1,2,3)) //6
+  // console.log(maybe((a,b,c) => a + b + c)(1,null,3)) // undefined
 }
