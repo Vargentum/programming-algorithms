@@ -97,10 +97,10 @@ export default function BasicRecipies () {
 
 
 
-  /*'maybe' recipe
+  /*'maybe' decorator
     
-    problem: 
-
+    execute function only if all params isSomething
+    else undefined
 
   */
   const isSomething = (val) => val !== null && val !== undefined
@@ -119,4 +119,33 @@ export default function BasicRecipies () {
 
   console.log(maybe((a,b,c) => a + b + c)(1,2,3)) //6
   console.log(maybe((a,b,c) => a + b + c)(1,null,3)) // undefined
+
+
+
+
+
+
+  /* 'once' decorator
+    
+    Executes function only once. For other calls returns undefined
+  */
+
+  const once = (fn) => {
+    let done = false
+    return function () {
+      return done ? undefined : ((done = true), fn.apply(this, arguments))
+    }
+  }
+
+  let onceGreet = once(() => "Only once")
+  console.log(onceGreet()) // "Only once"
+  console.log(onceGreet()) // undefined
+
+
+
+
 }
+
+
+
+
