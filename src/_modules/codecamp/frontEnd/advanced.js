@@ -82,11 +82,32 @@ export default function() {
     return str.replace(toFind, equalizeCase(toReplace, toFind))
   }
 
+  const translate = function translate(str) {
+    const consonants = 'BCDFGHJKLMNPQRSTVXZ'
+    const vowels = 'AEIOUY'
+    const ending = {
+      consonants: 'ay',
+      vowels: 'way'
+    }
+    let isVowelAtStart = (str) => {
+      return vowels
+        .toLowerCase()
+        .indexOf(str.charAt(0).toLowerCase()) !== -1
+    }
+    return isVowelAtStart(str) ? 
+      str + ending.vowels
+      :
+      str.replace(
+        new RegExp(`(^[${consonants}]+)(.*)`, 'i')
+        , `$2$1${ending.consonants}`)
+  }
+
   return {
     sumAll
     ,diff
     ,convert
     ,where
     ,myReplace
+    ,translate
   }
 }

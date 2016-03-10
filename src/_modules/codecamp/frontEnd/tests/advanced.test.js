@@ -10,6 +10,7 @@ describe('Advanced Algorithms', () => {
     ,convert
     ,where
     ,myReplace
+    ,translate
 
   } = AdvancedAlgorhitms()
 
@@ -100,6 +101,19 @@ describe('Advanced Algorithms', () => {
         myReplace("His name is Tom", "Tom", "john")
       ).toEqual("His name is John")
     });
+  });
+
+  describe('translate', () => {
+    it('Should remove all consolants from begining, add them to end with "ay" ending', () => {
+      expect(translate('glove')).toEqual('oveglay')
+      expect(translate('paragraphs')).toEqual('aragraphspay')
+    });
+
+    it('Should add "way" ending, if word begins with a wowel', () => {
+      expect(translate('algorithm')).toEqual('algorithmway')
+      expect(translate('eight')).toEqual('eightway')
+    })
+
   });
 
   // describe('', () => {
