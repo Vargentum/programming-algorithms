@@ -9,6 +9,7 @@ describe('Advanced Algorithms', () => {
     ,diff
     ,convert
     ,where
+    ,myReplace
 
   } = AdvancedAlgorhitms()
 
@@ -85,6 +86,19 @@ describe('Advanced Algorithms', () => {
               { "a": 1, "b": 2, "c": 2 }
             ]
           )
+    });
+  });
+
+  describe('myReplace', () => {
+    it('Should find and replace words in providen string', () => {
+      expect(
+        myReplace("This has a spellngi error", "spellngi", "spelling")
+      ).toEqual("This has a spelling error")
+    });
+    it('Should precerve case in replaced words', () => {
+      expect(
+        myReplace("His name is Tom", "Tom", "john")
+      ).toEqual("His name is John")
     });
   });
 

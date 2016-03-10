@@ -71,11 +71,22 @@ export default function() {
     })
   }
 
+  const myReplace = function myReplace(str, toFind, toReplace) {
+    let isUppercased = (char) => char !== "" && char.toUpperCase() === char
+    let equalizeCase = (src, orig) => {
+      return src
+        .split('')
+        .map((x, i) => isUppercased(orig.charAt(i)) ? x.toUpperCase() : x)
+        .join('')
+    }
+    return str.replace(toFind, equalizeCase(toReplace, toFind))
+  }
 
   return {
     sumAll
     ,diff
     ,convert
     ,where
+    ,myReplace
   }
 }
