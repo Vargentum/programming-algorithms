@@ -102,6 +102,35 @@ export default function() {
         , `$2$1${ending.consonants}`)
   }
 
+  const pair = function pair(str) {
+    const nucleines = {
+      base: "TCAG",
+      opposite: "AGTC"
+    }
+    return str
+      .split('')
+      .map(x => {
+        let idx = nucleines.base.indexOf(x)
+        return [x, nucleines.opposite.charAt(idx)]  
+      })
+  }
+
+  const fearNotLetter = function fearNotLetter(str) {
+    let alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    return alphabet
+      .split('')
+      .slice(
+        alphabet.indexOf(str[0]),
+        alphabet.indexOf(str[str.length - 1]) + 1
+      )
+      .reduce((p, n) => {
+        if (str.indexOf(n) === -1) {
+          p ? p += n : p = n
+        }
+        return p
+      }, undefined)
+  }
+
   return {
     sumAll
     ,diff
@@ -109,5 +138,7 @@ export default function() {
     ,where
     ,myReplace
     ,translate
+    ,pair
+    ,fearNotLetter
   }
 }

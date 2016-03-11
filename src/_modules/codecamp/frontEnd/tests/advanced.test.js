@@ -11,6 +11,8 @@ describe('Advanced Algorithms', () => {
     ,where
     ,myReplace
     ,translate
+    ,pair
+    ,fearNotLetter
 
   } = AdvancedAlgorhitms()
 
@@ -114,6 +116,26 @@ describe('Advanced Algorithms', () => {
       expect(translate('eight')).toEqual('eightway')
     })
 
+  });
+
+  describe('pair', () => {
+    it('Should pair DNA nucleines', () => {
+      expect(pair('CGC')).toEqual([['C', 'G'], ['G', 'C'], ['C', 'G']])
+      expect(pair('TCAG')).toEqual([['T', 'A'], ['C', 'G'], ['A', 'T'], ['G', 'C']])
+    });
+  });
+
+  describe('fearNotLetter', () => {
+    it('Should compare string with alphabet and return the missing letters', () => {
+      expect(fearNotLetter('abd')).toEqual('c')
+      expect(fearNotLetter('qrsuv')).toEqual('t')
+      expect(fearNotLetter('dghi')).toEqual('ef')
+    });
+    it('Should return undefined, if all string letters goes in alphabet order', () => {
+      expect(fearNotLetter('abc')).not.toBeDefined()
+      expect(fearNotLetter('xy')).not.toBeDefined()
+      expect(fearNotLetter('opqrst')).not.toBeDefined()
+    });
   });
 
   // describe('', () => {
