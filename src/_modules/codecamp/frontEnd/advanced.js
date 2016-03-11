@@ -131,6 +131,10 @@ export default function() {
       }, undefined)
   }
 
+  const boo = function boo(val) {
+    return typeof val === 'boolean'
+  }
+
   return {
     sumAll
     ,diff
@@ -140,5 +144,6 @@ export default function() {
     ,translate
     ,pair
     ,fearNotLetter
+    ,boo
   }
 }

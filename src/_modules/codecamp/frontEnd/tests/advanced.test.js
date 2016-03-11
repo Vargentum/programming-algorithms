@@ -13,6 +13,7 @@ describe('Advanced Algorithms', () => {
     ,translate
     ,pair
     ,fearNotLetter
+    ,boo
 
   } = AdvancedAlgorhitms()
 
@@ -135,6 +136,15 @@ describe('Advanced Algorithms', () => {
       expect(fearNotLetter('abc')).not.toBeDefined()
       expect(fearNotLetter('xy')).not.toBeDefined()
       expect(fearNotLetter('opqrst')).not.toBeDefined()
+    });
+  });
+
+  describe('boo', () => {
+    it('Should return true if tested value has boolean type. Return false overwise', () => {
+      expect(boo(true)).toEqual(true)
+      expect(boo(false)).toEqual(true)
+      expect(boo('true')).toEqual(false)
+      expect(boo('false')).toEqual(false)
     });
   });
 
