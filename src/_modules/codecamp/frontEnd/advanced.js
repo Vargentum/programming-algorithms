@@ -175,6 +175,21 @@ export default function() {
   }
 
 
+  const spinalCase = function spinalCase (str) {
+    let removePunctuation = s => s.replace(/[^0-9a-z\-]/g, '')
+    let convertUnderscoresAndSpaces = s => s.replace(/_|\s/g, '-')
+    let convertCamel = s => s.replace(/([^-])([A-Z])/g, '$1-$2')
+    let compose = (...fns) => (val) => fns.reduce((p,n) => n.call(p, p), val)
+
+    return compose(
+      convertUnderscoresAndSpaces,
+      convertCamel,
+      String.prototype.toLowerCase,
+      removePunctuation
+    )(str)
+  }
+
+
   return {
     sumAll
     ,diff
@@ -187,5 +202,6 @@ export default function() {
     ,boo
     ,unite
     ,sanitize
+    ,spinalCase
   }
 }

@@ -16,6 +16,7 @@ describe('Advanced Algorithms', () => {
     ,boo
     ,unite
     ,sanitize
+    ,spinalCase
 
   } = AdvancedAlgorhitms()
 
@@ -165,4 +166,19 @@ describe('Advanced Algorithms', () => {
       expect(sanitize(`normal string`)).toEqual(`normal string`)
     });
   });
+
+  describe('spinalCase', () => {
+    it(`Should convert words, camelCase and underscore_case to spinal-case`, () => {
+      expect(spinalCase('This Is Spinal Tap!')).toEqual('this-is-spinal-tap')
+      expect(spinalCase('The_Andy_Griffith_Show?:')).toEqual('the-andy-griffith-show')
+      expect(spinalCase('thisIsSpinalTap')).toEqual('this-is-spinal-tap')
+    });
+  });
+
+
+  // describe('', () => {
+  //   it(`Should `, () => {
+  //     expect().toEqual()
+  //   });
+  // });
 })
