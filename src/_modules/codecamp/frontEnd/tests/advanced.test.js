@@ -15,6 +15,7 @@ describe('Advanced Algorithms', () => {
     ,fearNotLetter
     ,boo
     ,unite
+    ,sanitize
 
   } = AdvancedAlgorhitms()
 
@@ -157,9 +158,11 @@ describe('Advanced Algorithms', () => {
   });
 
 
-  // describe('', () => {
-  //   it('Should ', () => {
-  //     expect().toEqual()
-  //   });
-  // });
+  describe('sanitize', () => {
+    it(`Should escape < > & " ' characters to their html form`, () => {
+      expect(sanitize("Dolce & Gabbana")).toEqual("Dolce &amp; Gabbana")
+      expect(sanitize(`escape < > & " '`)).toEqual(`escape &lt; &gt; &amp; &quot; &apos;`)
+      expect(sanitize(`normal string`)).toEqual(`normal string`)
+    });
+  });
 })

@@ -141,6 +141,39 @@ export default function() {
     },[])  
   }
 
+  const sanitize = function sanitize(str) {
+    const symbols = {
+      lt: '<',
+      gt: '>',
+      quot: `"`,
+      apos: `'`,
+      amp: '&' // need custom logic for avoiding problem of repetitive matchings & at already sanitized string
+    }
+    let symbolsEscaped = []
+      , symbolsRaw = []
+
+    Object.keys(symbols).forEach(key => {
+      symbolsEscaped.push(`&${key};`)
+      symbolsRaw.push(symbols[key])
+    })
+    let searchPtrn = new RegExp(
+      symbolsRaw
+        .filter(x => x !== symbols.amp)
+        .join('|') 
+    , 'gi')
+
+    let result
+      , getEscapedFormOf = (rawSymbol) => symbolsEscaped[symbolsRaw.indexOf(rawSymbol)]
+      , sanitizeSymbolType = (ptrn, symbol = ptrn) => {
+        return str.replace(new RegExp(ptrn, 'g'), getEscapedFormOf(symbol))
+      }  
+    str = sanitizeSymbolType(`\\${symbols.amp}`, symbols.amp)
+    while ((result = searchPtrn.exec(str)) !== null) {
+      str = sanitizeSymbolType(result[0])
+    }
+    return str
+  }
+
 
   return {
     sumAll
@@ -153,5 +186,6 @@ export default function() {
     ,fearNotLetter
     ,boo
     ,unite
+    ,sanitize
   }
 }
