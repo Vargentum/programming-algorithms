@@ -135,6 +135,13 @@ export default function() {
     return typeof val === 'boolean'
   }
 
+  const unite = function unite(...arrays) {
+    return arrays.reduce((p, n) => {
+      return p.concat(n.filter(x => !p[x]))
+    },[])  
+  }
+
+
   return {
     sumAll
     ,diff
@@ -145,5 +152,6 @@ export default function() {
     ,pair
     ,fearNotLetter
     ,boo
+    ,unite
   }
 }

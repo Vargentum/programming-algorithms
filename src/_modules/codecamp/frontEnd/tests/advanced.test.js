@@ -14,6 +14,7 @@ describe('Advanced Algorithms', () => {
     ,pair
     ,fearNotLetter
     ,boo
+    ,unite
 
   } = AdvancedAlgorhitms()
 
@@ -147,6 +148,14 @@ describe('Advanced Algorithms', () => {
       expect(boo('false')).toEqual(false)
     });
   });
+
+  describe('unite', () => {
+    it('Should return union of unique values from all proven arrays in their order', () => {
+      expect(unite([1, 3, 2], [5, 2, 1, 4], [2, 1])).toEqual([1,3,2,5,4])
+      expect(unite([1, 2, 3], [5, 2, 1, 4], [2, 1], [6, 7, 8])).toEqual([1,2,3,5,4,6,7,8])
+    });
+  });
+
 
   // describe('', () => {
   //   it('Should ', () => {
