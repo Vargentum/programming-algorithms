@@ -1,5 +1,6 @@
 'use strict';
 
+const compose = (...fns) => (val) => fns.reduce((p,n) => n.call(p, p), val)
 
 export default function() {
 
@@ -174,19 +175,30 @@ export default function() {
     return str
   }
 
-
   const spinalCase = function spinalCase (str) {
     let removePunctuation = s => s.replace(/[^0-9a-z\-]/g, '')
     let convertUnderscoresAndSpaces = s => s.replace(/_|\s/g, '-')
     let convertCamel = s => s.replace(/([^-])([A-Z])/g, '$1-$2')
-    let compose = (...fns) => (val) => fns.reduce((p,n) => n.call(p, p), val)
-
     return compose(
       convertUnderscoresAndSpaces,
       convertCamel,
       String.prototype.toLowerCase,
       removePunctuation
     )(str)
+  }
+
+  const sumFibs = function sumFibs (num) {
+    let sum = (a) => a.reduce((p,n) => p+=n, 0)
+    let getSumOf = (arr,idx) => sum(arr.slice(idx))
+    let genFibs = (limit) => {
+      let result = [0,1]
+        , nextFib = null
+      while ((nextFib = getSumOf(result, -2)) <= limit) {
+        result.push(nextFib)
+      }
+      return result
+    }
+    return sum(genFibs(num).filter(x => x % 2 !== 0))
   }
 
 
@@ -203,5 +215,6 @@ export default function() {
     ,unite
     ,sanitize
     ,spinalCase
+    ,sumFibs
   }
 }

@@ -17,6 +17,7 @@ describe('Advanced Algorithms', () => {
     ,unite
     ,sanitize
     ,spinalCase
+    ,sumFibs
 
   } = AdvancedAlgorhitms()
 
@@ -175,6 +176,14 @@ describe('Advanced Algorithms', () => {
     });
   });
 
+  describe('sumFibs', () => {
+    it(`Should sum all odd numbers up to and including the passed number if it's a Fibonacci number`, () => {
+      expect(sumFibs(1)).toEqual(jasmine.any(Number))
+      expect(sumFibs(4)).toEqual(5)
+      expect(sumFibs(1000)).toEqual(1785)
+      expect(sumFibs(4000000)).toEqual(4613732)
+    });
+  });
 
   // describe('', () => {
   //   it(`Should `, () => {
