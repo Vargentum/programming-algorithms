@@ -18,6 +18,7 @@ describe('Advanced Algorithms', () => {
     ,sanitize
     ,spinalCase
     ,sumFibs
+    ,sumPrimes
 
   } = AdvancedAlgorhitms()
 
@@ -182,6 +183,13 @@ describe('Advanced Algorithms', () => {
       expect(sumFibs(4)).toEqual(5)
       expect(sumFibs(1000)).toEqual(1785)
       expect(sumFibs(4000000)).toEqual(4613732)
+    });
+  });
+
+  describe('sumPrimes', () => {
+    it(`Should sum all prime numbers up to and including th provided number`, () => {
+      expect(sumPrimes(10)).toEqual(17)
+      expect(sumPrimes(977)).toEqual(73156)
     });
   });
 

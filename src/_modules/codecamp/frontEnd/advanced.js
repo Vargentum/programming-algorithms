@@ -1,6 +1,7 @@
 'use strict';
 
 const compose = (...fns) => (val) => fns.reduce((p,n) => n.call(p, p), val)
+const sum = (a) => a.reduce((p,n) => p+=n, 0)
 
 export default function() {
 
@@ -188,7 +189,6 @@ export default function() {
   }
 
   const sumFibs = function sumFibs (num) {
-    let sum = (a) => a.reduce((p,n) => p+=n, 0)
     let getSumOf = (arr,idx) => sum(arr.slice(idx))
     let genFibs = (limit) => {
       let result = [0,1]
@@ -199,6 +199,26 @@ export default function() {
       return result
     }
     return sum(genFibs(num).filter(x => x % 2 !== 0))
+  }
+
+  const sumPrimes = function sumPrimes (num) {
+    const firstPrime = 2
+    let isPrime = n => {
+      for (let j = firstPrime; j <= n/2; j++) {
+        if (n % j === 0) return false
+      }
+      return true
+    }
+    let genPrimes = (limit) => {
+      let result = []
+      for (let i = firstPrime; i <= limit; i++) {
+        if (isPrime(i)) {
+          result.push(i)
+        }
+      }
+      return result
+    }
+    return sum(genPrimes(num))
   }
 
 
@@ -216,5 +236,6 @@ export default function() {
     ,sanitize
     ,spinalCase
     ,sumFibs
+    ,sumPrimes
   }
 }
