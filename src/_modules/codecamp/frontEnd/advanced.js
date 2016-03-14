@@ -221,6 +221,28 @@ export default function() {
     return sum(genPrimes(num))
   }
 
+  const smallestCommons = function smallestCommons(range) {
+    let getFullRange = (range) => {
+      let [start, end] = range.sort()
+      let full = []
+      for (let j = start; j <= end; j++) {
+        full.push(j)
+      }
+      return [start, end, full]
+    }
+    let isCommonMultiple = (arr, num) => {
+      let checks = arr
+        .map(x => num % x === 0)
+        .filter(x => x)
+      return checks.length === arr.length
+    }
+    let [start, end, full] = getFullRange(range)
+    let i = 1
+    while (true) {
+      if (isCommonMultiple(full, end * i)) return end * i
+      i++
+    }
+  }
 
   return {
     sumAll
@@ -237,5 +259,6 @@ export default function() {
     ,spinalCase
     ,sumFibs
     ,sumPrimes
+    ,smallestCommons
   }
 }

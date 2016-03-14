@@ -19,6 +19,7 @@ describe('Advanced Algorithms', () => {
     ,spinalCase
     ,sumFibs
     ,sumPrimes
+    ,smallestCommons
 
   } = AdvancedAlgorhitms()
 
@@ -190,6 +191,14 @@ describe('Advanced Algorithms', () => {
     it(`Should sum all prime numbers up to and including th provided number`, () => {
       expect(sumPrimes(10)).toEqual(17)
       expect(sumPrimes(977)).toEqual(73156)
+    });
+  });
+
+  describe('smallestCommons', () => {
+    it(`Should find the smallest multiple that evenly divided by each number in provided range`, () => {
+      expect(smallestCommons([1,5])).toEqual(60)
+      expect(smallestCommons([5,1])).toEqual(60)
+      expect(smallestCommons([1,13])).toEqual(360360)
     });
   });
 
