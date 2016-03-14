@@ -223,12 +223,12 @@ export default function() {
 
   const smallestCommons = function smallestCommons(range) {
     let getFullRange = (range) => {
-      let [start, end] = range.sort()
+      let [min, max] = range.sort()
       let full = []
-      for (let j = start; j <= end; j++) {
+      for (let j = min; j <= max; j++) {
         full.push(j)
       }
-      return [start, end, full]
+      return [min, max, full]
     }
     let isCommonMultiple = (arr, num) => {
       let checks = arr
@@ -236,10 +236,10 @@ export default function() {
         .filter(x => x)
       return checks.length === arr.length
     }
-    let [start, end, full] = getFullRange(range)
+    let [min, max, full] = getFullRange(range)
     let i = 1
     while (true) {
-      if (isCommonMultiple(full, end * i)) return end * i
+      if (isCommonMultiple(full, max * i)) return max * i
       i++
     }
   }
