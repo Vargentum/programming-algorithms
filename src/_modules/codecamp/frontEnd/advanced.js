@@ -267,6 +267,14 @@ export default function() {
     return result
   } 
 
+  const steamroller = function steamroller (arr) {
+    return arr.reduce((p,n) => {
+      return Array.isArray(n)
+        ? p.concat(steamroller(n)) 
+        : p.concat([n])
+    }, [])
+  }
+
   return {
     sumAll
     ,diff
@@ -285,5 +293,6 @@ export default function() {
     ,smallestCommons
     ,find
     ,drop
+    ,steamroller
   }
 }

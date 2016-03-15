@@ -22,6 +22,7 @@ describe('Advanced Algorithms', () => {
     ,smallestCommons
     ,find
     ,drop
+    ,steamroller
 
   } = AdvancedAlgorhitms()
 
@@ -228,9 +229,14 @@ describe('Advanced Algorithms', () => {
         expect(drop([1,3,17], isEven)).toEqual([])
       });
     });
-
   })
 
+
+  describe('steamroller', () => {
+    it(`Should flatten multiple depth array into single-depth one`, () => {
+      expect(steamroller([[1,2],[3,[4,5,[6]]]])).toEqual([1,2,3,4,5,6])
+    });
+  });
 
   // describe('', () => {
   //   it(`Should `, () => {
