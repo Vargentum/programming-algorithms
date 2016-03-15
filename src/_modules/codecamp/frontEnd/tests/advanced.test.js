@@ -220,12 +220,12 @@ describe('Advanced Algorithms', () => {
 
     describe('drop', () => {
       it(`Should drop items from array, when predicate returns true`, () => {
-        expect(drop([2,4,6,10,3,4,6], isEven)).toEqual([3,4,6])
-        expect(drop([1,2,4], isEven)).toEqual([1,2,4])
+        expect(drop([2,4,6,10,3,4,6], isOdd)).toEqual([3,4,6])
+        expect(drop([1,2,4], isOdd)).toEqual([1,2,4])
       });
       it(`Should return empty array if all items passes the predicate truthly`, () => {
-        expect(drop([2,4,6,10,4,4,6], isEven)).toEqual([])
-        expect(drop([1,3,17], isOdd)).toEqual([])
+        expect(drop([2,4,6,10,4,4,6], isOdd)).toEqual([])
+        expect(drop([1,3,17], isEven)).toEqual([])
       });
     });
 

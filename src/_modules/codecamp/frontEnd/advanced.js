@@ -259,7 +259,7 @@ export default function() {
   const drop = function drop(arr, pred) {
     let result = []
     for (let i = 0; i < arr.length; i++) {
-      if (!pred(arr[i])) {
+      if (pred(arr[i])) {
         result = arr.slice(i)
         break
       }
