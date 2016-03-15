@@ -20,6 +20,7 @@ describe('Advanced Algorithms', () => {
     ,sumFibs
     ,sumPrimes
     ,smallestCommons
+    ,find
 
   } = AdvancedAlgorhitms()
 
@@ -199,6 +200,18 @@ describe('Advanced Algorithms', () => {
       expect(smallestCommons([1,5])).toEqual(60)
       expect(smallestCommons([5,1])).toEqual(60)
       expect(smallestCommons([1,13])).toEqual(360360)
+    });
+  });
+
+  describe('find', () => {
+    let isEven = x => x % 2 === 0
+    let isOdd = x => x % 2 !== 0
+    it(`Should find the first element in providen array that passes a test function`, () => {
+      expect(find([1,2,3], isEven)).toEqual(2)
+      expect(find([1,2,3], isOdd)).toEqual(1)
+    });
+    it(`Should return undefined if nothing passes the test`, () => {
+      expect(find([2,4], isOdd)).not.toBeDefined()
     });
   });
 

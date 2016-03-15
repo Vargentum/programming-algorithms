@@ -244,6 +244,18 @@ export default function() {
     }
   }
 
+  const find = function find(arr, fn){ 
+    // can be solved throught array[Symbol.iterator]()
+    let result
+    for (var i = 0; i < arr.length; i++) {
+      if (fn(arr[i])) {
+        result = arr[i]
+        break
+      }
+    }
+    return result
+  }
+
   return {
     sumAll
     ,diff
@@ -260,5 +272,6 @@ export default function() {
     ,sumFibs
     ,sumPrimes
     ,smallestCommons
+    ,find
   }
 }
