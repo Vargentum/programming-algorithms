@@ -244,6 +244,37 @@ export default function() {
     }
   }
 
+  const find = function find(arr, pred){ 
+    // can be solved throught array[Symbol.iterator]()
+    let result
+    for (let i = 0; i < arr.length; i++) {
+      if (pred(arr[i])) {
+        result = arr[i]
+        break
+      }
+    }
+    return result
+  }
+
+  const drop = function drop(arr, pred) {
+    let result = []
+    for (let i = 0; i < arr.length; i++) {
+      if (pred(arr[i])) {
+        result = arr.slice(i)
+        break
+      }
+    }
+    return result
+  } 
+
+  const steamroller = function steamroller (arr) {
+    return arr.reduce((p,n) => {
+      return Array.isArray(n)
+        ? p.concat(steamroller(n)) 
+        : p.concat([n])
+    }, [])
+  }
+
   return {
     sumAll
     ,diff
@@ -260,5 +291,8 @@ export default function() {
     ,sumFibs
     ,sumPrimes
     ,smallestCommons
+    ,find
+    ,drop
+    ,steamroller
   }
 }

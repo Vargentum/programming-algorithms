@@ -20,6 +20,9 @@ describe('Advanced Algorithms', () => {
     ,sumFibs
     ,sumPrimes
     ,smallestCommons
+    ,find
+    ,drop
+    ,steamroller
 
   } = AdvancedAlgorhitms()
 
@@ -199,6 +202,39 @@ describe('Advanced Algorithms', () => {
       expect(smallestCommons([1,5])).toEqual(60)
       expect(smallestCommons([5,1])).toEqual(60)
       expect(smallestCommons([1,13])).toEqual(360360)
+    });
+  });
+
+  describe('find & drop', () => {
+    const isEven = x => x % 2 === 0
+    const isOdd = x => x % 2 !== 0
+
+    describe('find', () => {
+      it(`Should find the first element in providen array that passes a test function`, () => {
+        expect(find([1,2,3], isEven)).toEqual(2)
+        expect(find([1,2,3], isOdd)).toEqual(1)
+      });
+      it(`Should return undefined if nothing passes the predicate function`, () => {
+        expect(find([2,4], isOdd)).not.toBeDefined()
+      });
+    });
+
+    describe('drop', () => {
+      it(`Should drop items from array, when predicate returns true`, () => {
+        expect(drop([2,4,6,10,3,4,6], isOdd)).toEqual([3,4,6])
+        expect(drop([1,2,4], isOdd)).toEqual([1,2,4])
+      });
+      it(`Should return empty array if all items passes the predicate truthly`, () => {
+        expect(drop([2,4,6,10,4,4,6], isOdd)).toEqual([])
+        expect(drop([1,3,17], isEven)).toEqual([])
+      });
+    });
+  })
+
+
+  describe('steamroller', () => {
+    it(`Should flatten multiple depth array into single-depth one`, () => {
+      expect(steamroller([[1,2],[3,[4,5,[6]]]])).toEqual([1,2,3,4,5,6])
     });
   });
 
