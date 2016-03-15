@@ -244,17 +244,28 @@ export default function() {
     }
   }
 
-  const find = function find(arr, fn){ 
+  const find = function find(arr, pred){ 
     // can be solved throught array[Symbol.iterator]()
     let result
-    for (var i = 0; i < arr.length; i++) {
-      if (fn(arr[i])) {
+    for (let i = 0; i < arr.length; i++) {
+      if (pred(arr[i])) {
         result = arr[i]
         break
       }
     }
     return result
   }
+
+  const drop = function drop(arr, pred) {
+    let result = []
+    for (let i = 0; i < arr.length; i++) {
+      if (!pred(arr[i])) {
+        result = arr.slice(i)
+        break
+      }
+    }
+    return result
+  } 
 
   return {
     sumAll
@@ -273,5 +284,6 @@ export default function() {
     ,sumPrimes
     ,smallestCommons
     ,find
+    ,drop
   }
 }

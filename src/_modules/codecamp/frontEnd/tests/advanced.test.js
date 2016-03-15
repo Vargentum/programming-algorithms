@@ -21,6 +21,7 @@ describe('Advanced Algorithms', () => {
     ,sumPrimes
     ,smallestCommons
     ,find
+    ,drop
 
   } = AdvancedAlgorhitms()
 
@@ -203,17 +204,33 @@ describe('Advanced Algorithms', () => {
     });
   });
 
-  describe('find', () => {
-    let isEven = x => x % 2 === 0
-    let isOdd = x => x % 2 !== 0
-    it(`Should find the first element in providen array that passes a test function`, () => {
-      expect(find([1,2,3], isEven)).toEqual(2)
-      expect(find([1,2,3], isOdd)).toEqual(1)
+  describe('find & drop', () => {
+    const isEven = x => x % 2 === 0
+    const isOdd = x => x % 2 !== 0
+
+    describe('find', () => {
+      it(`Should find the first element in providen array that passes a test function`, () => {
+        expect(find([1,2,3], isEven)).toEqual(2)
+        expect(find([1,2,3], isOdd)).toEqual(1)
+      });
+      it(`Should return undefined if nothing passes the predicate function`, () => {
+        expect(find([2,4], isOdd)).not.toBeDefined()
+      });
     });
-    it(`Should return undefined if nothing passes the test`, () => {
-      expect(find([2,4], isOdd)).not.toBeDefined()
+
+    describe('drop', () => {
+      it(`Should drop items from array, when predicate returns true`, () => {
+        expect(drop([2,4,6,10,3,4,6], isEven)).toEqual([3,4,6])
+        expect(drop([1,2,4], isEven)).toEqual([1,2,4])
+      });
+      it(`Should return empty array if all items passes the predicate truthly`, () => {
+        expect(drop([2,4,6,10,4,4,6], isEven)).toEqual([])
+        expect(drop([1,3,17], isOdd)).toEqual([])
+      });
     });
-  });
+
+  })
+
 
   // describe('', () => {
   //   it(`Should `, () => {
