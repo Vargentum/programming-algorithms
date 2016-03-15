@@ -145,9 +145,7 @@ export default function BasicRecipies () {
   let onceGreet = once(() => "Only once")
   // console.log(onceGreet()) // "Only once"
   // console.log(onceGreet()) // undefined
-
-
-
+  
 
 }
 
