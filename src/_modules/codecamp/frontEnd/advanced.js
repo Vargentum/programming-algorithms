@@ -286,6 +286,20 @@ export default function() {
     return coll.every(x => !!x[pred])
   }
 
+  const add = function add (a,b) {
+    let maybeNum = (fn) => (...args) => {
+      return args
+        .filter(a => typeof a !== 'number')
+        .length 
+          ? undefined 
+          : fn(...args)
+    }
+    let sum = (a,b) => a + b
+    return typeof a !== 'number' || b 
+      ? maybeNum(sum)(a,b) 
+      : (b) => maybeNum(sum)(a,b)
+  }
+
   return {
     sumAll
     ,diff
@@ -307,5 +321,6 @@ export default function() {
     ,steamroller
     ,binaryAgent
     ,every
+    ,add
   }
 }

@@ -25,6 +25,7 @@ describe('Advanced Algorithms', () => {
     ,steamroller
     ,binaryAgent
     ,every
+    ,add
 
   } = AdvancedAlgorhitms()
 
@@ -254,6 +255,19 @@ describe('Advanced Algorithms', () => {
     it(`Should check if given predicate is truthy for all elements in collection`, () => {
       expect(every(babies1, 'sex')).toBeTruthy()
       expect(every(babies2, 'sex')).not.toBeTruthy()
+    });
+  });
+
+  describe('add', () => {
+    it(`Should sum arguments if 2 provided`, () => {
+      expect(add(5,2)).toBe(7)
+    });
+    it(`Should expect for next argument if only one supplied`, () => {
+      expect(add(5)(2)).toBe(7)
+    });
+    it(`Should return undefined if some arguments isn't number`, () => {
+      expect(add('test')).not.toBeDefined()
+      expect(add(5)('2')).not.toBeDefined()
     });
   });
 
