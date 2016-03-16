@@ -75,6 +75,14 @@ export default function BasicRecipes () {
     return fn === undefined ? curried : curried(fn)
   }
 
+  //custom thru for string
+  const thruStr = (fn) => (str) => {
+    return str
+      .split(' ')
+      .map(fn)
+      .join('')
+  }
+
 
 
   /*MAYBE
@@ -113,6 +121,7 @@ export default function BasicRecipes () {
     ,unary
     ,tap
     ,thru
+    ,thruStr
     ,maybe
     ,once
   }

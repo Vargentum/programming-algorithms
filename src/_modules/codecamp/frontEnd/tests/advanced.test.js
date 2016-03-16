@@ -23,6 +23,7 @@ describe('Advanced Algorithms', () => {
     ,find
     ,drop
     ,steamroller
+    ,binaryAgent
 
   } = AdvancedAlgorhitms()
 
@@ -231,10 +232,17 @@ describe('Advanced Algorithms', () => {
     });
   })
 
-
   describe('steamroller', () => {
     it(`Should flatten multiple depth array into single-depth one`, () => {
       expect(steamroller([[1,2],[3,[4,5,[6]]]])).toEqual([1,2,3,4,5,6])
+    });
+  });
+
+  describe('binaryAgent', () => {
+    it(`Should convert binary string into English. Input will be space separated`, () => {
+      expect(
+        binaryAgent("01000001 01110010 01100101 01101110 00100111 01110100 00100000 01100010 01101111 01101110 01100110 01101001 01110010 01100101 01110011 00100000 01100110 01110101 01101110 00100001 00111111")
+      ).toEqual("Aren't bonfires fun!?")
     });
   });
 
