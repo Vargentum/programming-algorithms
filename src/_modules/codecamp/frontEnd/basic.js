@@ -2,7 +2,6 @@
 
 import {mapWith, compose} from '../../js-allonge/unsorted/unsorted'
 
-
 export default function () {
   const filterPunctuation = str => str.replace(/[^0-9a-z]/gi, '')
 
@@ -85,7 +84,11 @@ export default function () {
   }
 
   const mutation = function mutation([orig, test]) {
-    return 
+    let [lOrig, lTest] = [orig, test].map(x => x.toLowerCase())
+    return !lTest
+      .split('')
+      .filter(x => lOrig.indexOf(x) === -1)
+      .length
   }
 
   const bouncer = function bouncer(arr) {

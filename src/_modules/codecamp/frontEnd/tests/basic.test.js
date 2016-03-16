@@ -128,18 +128,18 @@ describe('BasicAlgorhitms', function() {
     });
   });
 
-  // describe('mutation', () => {
-  //   it('Should return true if second array item contains all letters from first one', () => {
-  //     expect(mutation(['hello', 'HELLo'])).toBe(true)
-  //     expect(mutation(['Alien', 'line'])).toBe(true)
-  //     expect(mutation(['Mary', 'Army'])).toBe(true)
-  //     expect(mutation(['Mary', 'Aarmy'])).toBe(true)
-  //   });
-  //   it('Should return false overwise', () => {
-  //     expect(mutation(['hello', 'helx'])).toBe(false)
-  //     expect(mutation(['Alien', 'list'])).toBe(false)
-  //   });
-  // });
+  describe('mutation', () => {
+    it('Should return true if second array item contains all letters from first one', () => {
+      expect(mutation(['hello', 'HELLo'])).toBe(true)
+      expect(mutation(['Alien', 'line'])).toBe(true)
+      expect(mutation(['Mary', 'Army'])).toBe(true)
+      expect(mutation(['Mary', 'Aarmy'])).toBe(true)
+    });
+    it('Should return false overwise', () => {
+      expect(mutation(['hello', 'helx'])).toBe(false)
+      expect(mutation(['Alien', 'list'])).toBe(false)
+    });
+  });
 
 
   describe('bouncer', () => {
