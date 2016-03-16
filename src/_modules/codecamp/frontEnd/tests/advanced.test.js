@@ -24,6 +24,7 @@ describe('Advanced Algorithms', () => {
     ,drop
     ,steamroller
     ,binaryAgent
+    ,every
 
   } = AdvancedAlgorhitms()
 
@@ -243,6 +244,16 @@ describe('Advanced Algorithms', () => {
       expect(
         binaryAgent("01000001 01110010 01100101 01101110 00100111 01110100 00100000 01100010 01101111 01101110 01100110 01101001 01110010 01100101 01110011 00100000 01100110 01110101 01101110 00100001 00111111")
       ).toEqual("Aren't bonfires fun!?")
+    });
+  });
+
+  describe('every', () => {
+    let babies1 = [{"user": "Tinky-Winky", "sex": "male"}, {"user": "Dipsy", "sex": "male"}, {"user": "Laa-Laa", "sex": "female"}, {"user": "Po", "sex": "female"}]
+    let babies2 = [{"user": "Tinky-Winky", "sex": "male"}, {"user": "Dipsy"}, {"user": "Laa-Laa", "sex": "female"}, {"user": "Po", "sex": "female"}]
+    
+    it(`Should check if given predicate is truthy for all elements in collection`, () => {
+      expect(every(babies1, 'sex')).toBeTruthy()
+      expect(every(babies2, 'sex')).not.toBeTruthy()
     });
   });
 

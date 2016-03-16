@@ -282,6 +282,10 @@ export default function() {
     return thruStr(converter)(binStr)
   }
 
+  const every = function every (coll, pred) {
+    return coll.every(x => !!x[pred])
+  }
+
   return {
     sumAll
     ,diff
@@ -302,5 +306,6 @@ export default function() {
     ,drop
     ,steamroller
     ,binaryAgent
+    ,every
   }
 }
