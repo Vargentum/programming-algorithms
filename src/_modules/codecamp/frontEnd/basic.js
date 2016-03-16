@@ -85,11 +85,7 @@ export default function () {
   }
 
   const mutation = function mutation([orig, test]) {
-    let misMatched = test.toLowerCase().split('').forEach(x => {
-      if (orig.toLowerCase().indexOf(x) === -1) return true
-    })
-    debugger
-    return !misMatched
+    return 
   }
 
   const bouncer = function bouncer(arr) {

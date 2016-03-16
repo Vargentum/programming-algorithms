@@ -4,7 +4,7 @@ import 'babel-polyfill'
 import {mapWith} from '../unsorted/unsorted'
 
 
-export default function BasicRecipes () {
+export default (function BasicRecipes () {
 
 
   /*CALLFIRST & CALLLAST: PA decorators: helps insert fisrt or last arguments */
@@ -125,4 +125,4 @@ export default function BasicRecipes () {
     ,maybe
     ,once
   }
-}
+})()

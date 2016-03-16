@@ -1,10 +1,6 @@
 'use strict';
 
-import BasicRecipes from '../basic-recipes';
-
-describe('BasicRecipes View', function() {
-
-  const {
+import {
      callFirst
     ,callLast
     ,unary
@@ -13,7 +9,10 @@ describe('BasicRecipes View', function() {
     ,maybe
     ,once
      
-  } = BasicRecipes()
+  } from '../basic-recipes';
+
+
+describe('BasicRecipes View', function() {
 
   describe(`Decorators`, () => {
     let sum = (a, b) => a + b
