@@ -1,10 +1,6 @@
 'use strict';
 
-import IntermediateAlgorhitms from '../intermediate';
-
-describe('Advanced Algorithms', () => {
-
-  const {
+import {
     sumAll
     ,diff
     ,convert
@@ -27,11 +23,10 @@ describe('Advanced Algorithms', () => {
     ,every
     ,add
 
-  } = IntermediateAlgorhitms()
+  } from '../intermediate';
 
-  it('Should be defined', () => {
-    expect(IntermediateAlgorhitms()).toBeDefined();
-  });
+
+describe('Advanced Algorithms', () => {
 
   describe('sumAll', () => {
     it('Should sum integers from first element of providen array to second', () => {

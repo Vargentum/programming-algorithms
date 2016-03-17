@@ -1,10 +1,6 @@
 'use strict';
 
-import BasicAlgorhitms from '../basic';
-
-describe('BasicAlgorhitms', function() {
-
-  const {
+import {
     factorialize
    ,palindrome
    ,findLongestWord
@@ -21,11 +17,10 @@ describe('BasicAlgorhitms', function() {
    ,where
    ,rot13
 
- } = BasicAlgorhitms()
+ } from '../basic';
 
-  it('Should run a few assertions', () => {
-    expect(BasicAlgorhitms()).toBeDefined();
-  });
+
+describe('BasicAlgorhitms', function() {
 
 
   describe('factorialize', () => {

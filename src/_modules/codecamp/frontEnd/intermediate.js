@@ -2,7 +2,7 @@
 
 import {thruStr} from '../../js-allonge/basic-recipes/basic-recipes'
 
-export default function() {
+export default (() => {
   const compose = (...fns) => (val) => fns.reduce((p,n) => n.call(p, p), val)
   const sum = (a) => a.reduce((p,n) => p+=n, 0)
 
@@ -322,4 +322,5 @@ export default function() {
     ,every
     ,add
   }
-}
+
+})()

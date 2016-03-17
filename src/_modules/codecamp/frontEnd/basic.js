@@ -2,7 +2,7 @@
 
 import {mapWith, compose} from '../../js-allonge/unsorted/unsorted'
 
-export default function () {
+export default (() => {
   const filterPunctuation = str => str.replace(/[^0-9a-z]/gi, '')
 
   const reverse = function reverse(str) {
@@ -145,4 +145,5 @@ export default function () {
    ,where
    ,rot13
   }
-}
+
+})()
