@@ -126,8 +126,8 @@ describe('BasicAlgorhitms', function() {
       expect(slasher([1,2,3,4], 0)).toEqual([1,2,3,4])
       expect(slasher([1,2,3,4], 10)).toEqual([])
     });
-  });
 
+  });
   describe('mutation', () => {
     it('Should return true if second array item contains all letters from first one', () => {
       expect(mutation(['hello', 'HELLo'])).toBe(true)
