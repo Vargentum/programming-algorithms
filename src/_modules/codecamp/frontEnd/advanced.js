@@ -1,4 +1,4 @@
-'use strict';
+import roundTo from "round-to"
 
 export default (() => {
   
@@ -36,25 +36,30 @@ export default (() => {
     }
     let rest = cash - price
     let sortedByDignitiesCID = CID.sort(([n1], [n2]) => dignity[n2] - dignity[n1])
-    let restCID = sortedByDignitiesCID
+    const restCID = sortedByDignitiesCID
       .reduce((cid, [name, amount]) => {
         let coin = [name, 0]
         let coinDignity = dignity[name]
         while (amount && rest >= coinDignity) {
-          rest = Math.round(rest - coinDignity)
-          amount = Math.round(rest - coinDignity)
+          rest = roundTo(rest - coinDignity, 3)
+          amount = roundTo(amount - coinDignity, 3)
           coin[1] += coinDignity 
         }
         return coin[1] ? cid.concat([coin]) : cid
       }, [])
-    let availableCash = CID.reduce((cash, [name, amount]) => {
-      return cash += amount
-    }, 0)
-    debugger
+
+    const cidToInt = (cid) => {
+      return roundTo(cid.reduce((cash, [name, amount]) => {
+        return cash += amount
+      }, 0), 3)
+    }
+
+    const availableCash = cidToInt(CID)
+    const restCash = cidToInt(restCID)
 
     switch (true) {
       case availableCash === cash - price: return 'Closed'
-      case availableCash < cash - price: return 'Insufficied funds'
+      case restCash !== cash - price: return 'Insufficient Funds'
       default: return restCID
     }
   }
