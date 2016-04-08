@@ -64,9 +64,25 @@ export default (() => {
     }
   }
 
+
+  const updateInventory = function updateInventory(old = [], fresh = []) {
+    const updateInventoryKeys = (arr) => arr.reduce((p, [q, n]) => {
+      p[n] ? p[n] += q : p[n] = q
+      return p
+    }, {})
+    const sortAndConvertToProperFormat = (hash) => Object.keys(hash)
+      .reduce((p, n) => p.concat([[hash[n], n]]), [])
+      .sort(([q1, n1], [q2, n2]) => n1 < n2 ? -1 : 1)
+
+    return sortAndConvertToProperFormat(
+      updateInventoryKeys(old.concat(fresh))
+    )
+  }
+
   return {
     telephoneCheck
     ,sym
     ,checkCashRegister
+    ,updateInventory
   }
 })()
