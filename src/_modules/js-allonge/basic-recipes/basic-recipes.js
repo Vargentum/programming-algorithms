@@ -114,6 +114,36 @@ export default (function BasicRecipes () {
     }
   }
 
+  const __slice = Array.prototype.slice
+  
+
+
+
+  /*
+    Left / Right Variadic
+  */
+  // const rightVariadic = (a,b,...c) {...}
+
+  const leftVariadic = (fn) => {
+    if (fn.length < 1) {
+      return fn;
+    }
+    else {
+      return function (...args) {
+        const gathered = args.slice(0, args.length - fn.length + 1),
+              spread   = args.slice(args.length - fn.length + 1);
+
+        return fn.apply(
+          this, [gathered].concat(spread)
+        );
+      }
+    }
+  };
+  const butLastAndLast = leftVariadic((butLast, last) => [butLast, last]);
+  // butLastAndLast('why', 'hello', 'there', 'little', 'droid')
+    //=> [["why","hello","there","little"],"droid"]
+
+
 
   return {
     callFirst
@@ -124,5 +154,6 @@ export default (function BasicRecipes () {
     ,thruStr
     ,maybe
     ,once
+    ,leftVariadic
   }
 })()

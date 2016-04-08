@@ -8,6 +8,7 @@ import {
     ,thru
     ,maybe
     ,once
+    ,leftVariadic
      
   } from '../basic-recipes';
 
@@ -98,6 +99,15 @@ describe('BasicRecipes View', function() {
     });
 
 
+    describe(`leftVariadic`, () => {
+      const butLastAndLast = leftVariadic((butLast, last) => [butLast, last]);
+
+      it(`Should allow to spreaded argumenst inside function`, () => {
+        expect(
+          butLastAndLast('why', 'hello', 'there', 'little', 'droid')
+        ).toEqual([["why","hello","there","little"],"droid"]);
+      });
+    });
 
 
   });
