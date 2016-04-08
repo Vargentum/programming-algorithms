@@ -61,5 +61,5 @@ gulp.task('test', ['eslint'], (done) => {
     configFile: path.join(__dirname, '/karma.conf.js'),
     singleRun: !args.watch,
     autoWatch: args.watch
-  }, done).start();
+  }, () => done()).start();
 });
