@@ -11,6 +11,8 @@ import {
     ,rightVariadic
     ,leftVariadic
     ,leftGather
+    ,recurCompose
+    ,reduceCompose
      
   } from '../basic-recipes';
 
@@ -135,7 +137,20 @@ describe('BasicRecipes View', function() {
       });
     });
 
+
+  describe(`Variadic Compose`, () => {
+    const inc = x => x + 1
+    const double = x => x * 2
+    const triple = x => x * 3
+
+    it(`Should compose variadic number of function toghether`, () => {
+      expect(recurCompose(inc, double, triple)(10)).toEqual(inc(double(triple(10))));
+      expect(reduceCompose(inc, double, triple)(10)).toEqual(inc(double(triple(10))));
+    });
   });
+
+  });
+
 
   // describe(``, () => {
   //   it(`Should `, () => {

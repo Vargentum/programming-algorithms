@@ -160,6 +160,25 @@ export default (function BasicRecipes () {
   }
 
 
+  /* Variadic Compose
+
+    compose(a) === a
+    compose(a,b) === (c) => a(compose(b)(c))
+    compose(a,..rest) === (c) => a(compose(...rest)(c))
+    
+   */
+
+  const recurCompose = (a, ...rest) => {
+    return rest.length === 0 
+      ? a
+      : (c) => a(recurCompose(...rest)(c))
+  }
+
+  const reduceCompose = (...fns) => (initValue) => {
+    return fns.reverse().reduce((p,n) => n(p), initValue)
+  }
+
+
   return {
     callFirst
     ,callLast
@@ -172,5 +191,7 @@ export default (function BasicRecipes () {
     ,rightVariadic
     ,leftVariadic
     ,leftGather
+    ,recurCompose
+    ,reduceCompose
   }
 })()
