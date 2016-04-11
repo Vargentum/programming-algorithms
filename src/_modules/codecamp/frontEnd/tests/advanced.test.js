@@ -5,6 +5,7 @@ import {
   ,sym
   ,checkCashRegister
   ,updateInventory
+  ,permAlone
 
 } from '../advanced'
 
@@ -82,6 +83,16 @@ describe('Advanced CodeCamp JS Algorhitms', () => {
       expect(
         updateInventory([[21, "Bowling Ball"], [2, "Dirty Sock"], [1, "Hair Pin"], [5, "Microphone"]], [[2, "Hair Pin"], [3, "Half-Eaten Apple"], [67, "Bowling Ball"], [7, "Toothpaste"]])
       ).toEqual([[88, "Bowling Ball"], [2, "Dirty Sock"], [3, "Hair Pin"], [3, "Half-Eaten Apple"], [5, "Microphone"], [7, "Toothpaste"]])
+    })
+  })
+
+  describe('permAlone', () => {
+    it(`Should return the number of total permutations of the provided string that don't have repeated consecutive letters. 
+        Assume that all characters in the provided string are each unique.`, () => {
+      expect(permAlone("aab")).toEqual(2)
+      expect(permAlone("aabb")).toEqual(8)
+      expect(permAlone("abcdefa")).toEqual(3600)
+      expect(permAlone("zzzzzz")).toEqual(0)
     })
   })
 

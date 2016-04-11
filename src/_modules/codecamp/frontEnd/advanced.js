@@ -7,6 +7,7 @@ export default (() => {
     return validUSNumPtrn.test(str)
   }
 
+
   const sym = function sym(...arrs) {
     let rmRepeated = (a) => a.reduce((p,n) => {
       return p.indexOf(n) === -1 ? p.concat([n]) : p
@@ -21,6 +22,7 @@ export default (() => {
       .reduce((p,n) => getSym(p, rmRepeated(n)), [])
       .sort((a,b) => a - b)
   } 
+
 
   const checkCashRegister = function checkCashRegister(price, cash, CID) {
     const dignity = {
@@ -79,10 +81,27 @@ export default (() => {
     )
   }
 
+
+  const permAlone = function permAlone(str) {
+    const factorial = (n) => n === 0 ? 1 : n * factorial(n - 1)
+    const removeDuplicated = (str) => str.split('').reduce((p,n) => {
+      return p.indexOf(n) === -1 ? p.concat([n]) : p
+    })
+    const [total, requested] = [str.length, removeDuplicated(str).length]
+
+    switch (requested) {
+      case 0: return 1
+      case 1: return total
+      case total: return factorial(total)
+      default: return factorial(total) / factorial(total - requested)
+    }
+  }
+
   return {
     telephoneCheck
     ,sym
     ,checkCashRegister
     ,updateInventory
+    ,permAlone
   }
 })()
