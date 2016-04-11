@@ -10,6 +10,7 @@ import {
     ,once
     ,rightVariadic
     ,leftVariadic
+    ,leftGather
      
   } from '../basic-recipes';
 
@@ -100,11 +101,11 @@ describe('BasicRecipes View', function() {
     });
 
 
-    describe(`rightVariadic`, () => {
+    describe(`Right Variadic function`, () => {
       const firstAndRestES6 = (first, ...rest) => [first, rest] //es6
       const firstAndRest = rightVariadic((first, rest) => [first, rest])
 
-      it(`Should allow to spreaded argumenst inside function`, () => {
+      it(`Should allow union variadic arguments in Last provided argument`, () => {
         expect(
           firstAndRestES6('Right', 'variadic', 'example', 'arguments')
         ).toEqual(["Right", ["variadic","example","arguments"]]);
@@ -114,16 +115,25 @@ describe('BasicRecipes View', function() {
       });
     });
 
-    describe(`leftVariadic`, () => {
+    describe(`Left Variadic function`, () => {
       const restAndLast = leftVariadic((rest, last) => [rest, last]);
 
-      it(`Should allow to spreaded argumenst inside function`, () => {
+      it(`Should allow union variadic arguments in First provided argument`, () => {
         expect(
           restAndLast('Left', 'variadic', 'example', 'arguments')
         ).toEqual([["Left","variadic","example"], "arguments"]);
       });
     });
 
+
+    describe(`Left variadic destructing`, () => {
+      const [variadic, left] = leftGather(2)(['Left', 'variadic', 'example', 'arguments'])
+
+      it(`Should allow union variadic arguments in destructiring syntax`, () => {
+        expect(variadic).toEqual(["Left","variadic","example"]);
+        expect(left).toEqual("arguments");
+      });
+    });
 
   });
 

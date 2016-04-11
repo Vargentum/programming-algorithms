@@ -121,9 +121,13 @@ export default (function BasicRecipes () {
 
   /*
     Left / Right Variadic
+
+    rightVariadic & rightGather implementable with es6 ...spread
     
-    rV(a,b) f.length 2
-    rv(1,2,3,4) f.arguments 3
+      rightVariadic = (a, ...b) => someFunc
+      const [a, ...b] = someArray
+
+    leftVariadic & leftGather implementable via decorator function
 
   */
   const rightVariadic = (fn) => {
@@ -145,10 +149,15 @@ export default (function BasicRecipes () {
       return fn.apply(this, [gathered].concat(spread));
     }
   };
-  const butLastAndLast = leftVariadic((butLast, last) => [butLast, last]);
-  // butLastAndLast('why', 'hello', 'there', 'little', 'droid')
-    //=> [["why","hello","there","little"],"droid"]
 
+  const leftGather = (outputArrayLength) => {
+    return function (inputArray) {
+      return [inputArray.slice(0, inputArray.length - outputArrayLength + 1)]
+        .concat(
+          inputArray.slice(inputArray.length - outputArrayLength + 1)
+        )
+    }
+  }
 
 
   return {
@@ -162,5 +171,6 @@ export default (function BasicRecipes () {
     ,once
     ,rightVariadic
     ,leftVariadic
+    ,leftGather
   }
 })()
