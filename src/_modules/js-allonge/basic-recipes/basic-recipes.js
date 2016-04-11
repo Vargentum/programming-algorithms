@@ -121,22 +121,28 @@ export default (function BasicRecipes () {
 
   /*
     Left / Right Variadic
+    
+    rV(a,b) f.length 2
+    rv(1,2,3,4) f.arguments 3
+
   */
-  // const rightVariadic = (a,b,...c) {...}
+  const rightVariadic = (fn) => {
+    if (fn.length < 1) return fn
+    return function(...args) {
+      const gathered = args.slice(fn.length - 1)
+          , spread   = args.slice(0, fn.length - 1);
+      
+      return fn.apply(this, spread.concat([gathered]))
+    }
+  }
 
   const leftVariadic = (fn) => {
-    if (fn.length < 1) {
-      return fn;
-    }
-    else {
-      return function (...args) {
-        const gathered = args.slice(0, args.length - fn.length + 1),
-              spread   = args.slice(args.length - fn.length + 1);
+    if (fn.length < 1) return fn;
+    return function (...args) {
+      const gathered = args.slice(0, args.length - fn.length + 1)
+          , spread   = args.slice(args.length - fn.length + 1);
 
-        return fn.apply(
-          this, [gathered].concat(spread)
-        );
-      }
+      return fn.apply(this, [gathered].concat(spread));
     }
   };
   const butLastAndLast = leftVariadic((butLast, last) => [butLast, last]);
@@ -154,6 +160,7 @@ export default (function BasicRecipes () {
     ,thruStr
     ,maybe
     ,once
+    ,rightVariadic
     ,leftVariadic
   }
 })()

@@ -8,6 +8,7 @@ import {
     ,thru
     ,maybe
     ,once
+    ,rightVariadic
     ,leftVariadic
      
   } from '../basic-recipes';
@@ -99,13 +100,27 @@ describe('BasicRecipes View', function() {
     });
 
 
-    describe(`leftVariadic`, () => {
-      const butLastAndLast = leftVariadic((butLast, last) => [butLast, last]);
+    describe(`rightVariadic`, () => {
+      const firstAndRestES6 = (first, ...rest) => [first, rest] //es6
+      const firstAndRest = rightVariadic((first, rest) => [first, rest])
 
       it(`Should allow to spreaded argumenst inside function`, () => {
         expect(
-          butLastAndLast('why', 'hello', 'there', 'little', 'droid')
-        ).toEqual([["why","hello","there","little"],"droid"]);
+          firstAndRestES6('Right', 'variadic', 'example', 'arguments')
+        ).toEqual(["Right", ["variadic","example","arguments"]]);
+        expect(
+          firstAndRest('Right', 'variadic', 'example', 'arguments')
+        ).toEqual(["Right", ["variadic","example","arguments"]]);
+      });
+    });
+
+    describe(`leftVariadic`, () => {
+      const restAndLast = leftVariadic((rest, last) => [rest, last]);
+
+      it(`Should allow to spreaded argumenst inside function`, () => {
+        expect(
+          restAndLast('Left', 'variadic', 'example', 'arguments')
+        ).toEqual([["Left","variadic","example"], "arguments"]);
       });
     });
 
