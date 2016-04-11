@@ -13,6 +13,7 @@ import {
     ,leftGather
     ,recurCompose
     ,reduceCompose
+    ,pipeline
      
   } from '../basic-recipes';
 
@@ -138,14 +139,23 @@ describe('BasicRecipes View', function() {
     });
 
 
-  describe(`Variadic Compose`, () => {
+  describe(`Variadic Compose & Pipeline`, () => {
     const inc = x => x + 1
     const double = x => x * 2
     const triple = x => x * 3
+    const commonCompose = inc(double(triple(10)))
+    const commonPipeline = triple(double(inc(10)))
 
     it(`Should compose variadic number of function toghether`, () => {
-      expect(recurCompose(inc, double, triple)(10)).toEqual(inc(double(triple(10))));
-      expect(reduceCompose(inc, double, triple)(10)).toEqual(inc(double(triple(10))));
+      expect(commonCompose).toEqual(1 + 2 * 3 * 10)
+      expect(recurCompose(inc, double, triple)(10)).toEqual(commonCompose);
+      expect(reduceCompose(inc, double, triple)(10)).toEqual(commonCompose);
+    });
+
+
+    it(`Pipeline should traverse init value through functions, from Left to Right`, () => {
+      expect(commonPipeline).toEqual((10 + 1) * 2 * 3)
+      expect(pipeline(inc, double, triple)(10)).toEqual(commonPipeline)
     });
   });
 

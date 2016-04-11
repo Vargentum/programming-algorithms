@@ -178,6 +178,10 @@ export default (function BasicRecipes () {
     return fns.reverse().reduce((p,n) => n(p), initValue)
   }
 
+  const pipeline = (...fns) => (initValue) => {
+    return fns.reduce((p,n) => n(p), initValue)
+  }
+
 
   return {
     callFirst
@@ -193,5 +197,6 @@ export default (function BasicRecipes () {
     ,leftGather
     ,recurCompose
     ,reduceCompose
+    ,pipeline
   }
 })()
