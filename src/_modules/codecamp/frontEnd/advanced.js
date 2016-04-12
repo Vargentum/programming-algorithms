@@ -171,6 +171,37 @@ export default (() => {
     return new FriendlyDateRange(startDate, endDate)
   }
 
+  class Person {
+    constructor(firstAndLast) {
+      this._beat = 1
+      this._silly = 2
+      this._first = 3
+      this._testCase = 4
+      
+      this.setFullName(firstAndLast)
+    }
+    getFirstName() {
+      return this._firstName
+    }
+    getLastName() {
+      return this._lastName
+    }
+    getFullName() {
+      return this.getFirstName() + " " + this.getLastName()
+    }
+    setFirstName(first) {
+      this._firstName = first
+    }
+    setLastName(last) {
+      this._lastName = last
+    }
+    setFullName(firstAndLast) {
+      const [first, last] = firstAndLast.split(' ')
+      this.setFirstName(first)
+      this.setLastName(last)
+    }
+  }
+  
 
   return {
     telephoneCheck
@@ -179,5 +210,6 @@ export default (() => {
     ,updateInventory
     ,permAlone
     ,makeFriendlyDates
+    ,Person
   }
 })()

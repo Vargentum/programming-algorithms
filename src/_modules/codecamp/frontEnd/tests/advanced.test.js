@@ -7,6 +7,7 @@ import {
   ,updateInventory
   ,permAlone
   ,makeFriendlyDates
+  ,Person
 
 } from '../advanced'
 
@@ -114,6 +115,16 @@ describe('Advanced CodeCamp JS Algorhitms', () => {
       expect(makeFriendlyDates(["2018-01-13", "2018-01-13"])).toEqual(["January 13th, 2018"])
       expect(makeFriendlyDates(["2022-09-05", "2023-09-04"])).toEqual(["September 5th, 2022","September 4th"])
       expect(makeFriendlyDates(["2022-09-05", "2023-09-05"])).toEqual(["September 5th, 2022","September 5th, 2023"])
+    })
+  })
+
+  describe('Person class', () => {
+    let bob = new Person("Bob Ross")
+
+    it(`Should `, () => {
+      expect(Object.keys(bob).length).toBe(6)
+      expect(bob instanceof Person).toBe(true)
+      expect(bob.getFullName()).toBe("Bob Ross")
     })
   })
 
