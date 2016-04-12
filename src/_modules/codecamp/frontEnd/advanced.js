@@ -1,7 +1,7 @@
 import roundTo from "round-to"
 
 export default (() => {
-  
+
   const telephoneCheck = function telephoneChck(str) {
     const validUSNumPtrn = /^1?\s?((\(\d{3}\))|(\d{3}))\s?\-?\d{3}(\s|\-)?\d{4}$/
     return validUSNumPtrn.test(str)
@@ -21,7 +21,7 @@ export default (() => {
     return arrs
       .reduce((p,n) => getSym(p, rmRepeated(n)), [])
       .sort((a,b) => a - b)
-  } 
+  }
 
 
   const checkCashRegister = function checkCashRegister(price, cash, CID) {
@@ -34,7 +34,7 @@ export default (() => {
       FIVE: 5,
       TEN: 10,
       TWENTY: 20,
-      'ONE HUNDRED': 100 
+      'ONE HUNDRED': 100
     }
     let rest = cash - price
     let sortedByDignitiesCID = CID.sort(([n1], [n2]) => dignity[n2] - dignity[n1])
@@ -45,7 +45,7 @@ export default (() => {
         while (amount && rest >= coinDignity) {
           rest = roundTo(rest - coinDignity, 3)
           amount = roundTo(amount - coinDignity, 3)
-          coin[1] += coinDignity 
+          coin[1] += coinDignity
         }
         return coin[1] ? cid.concat([coin]) : cid
       }, [])
@@ -97,11 +97,87 @@ export default (() => {
     }
   }
 
+
+  const makeFriendlyDates = function makeFriendlyDates([start, end]) {
+    const removeNulls = (arr) => arr.filter(x => x !== null)
+    class FriendlyDateRange {
+      static monthes = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ]
+      static ordinals = {
+        1: 'st',
+        2: 'nd',
+        3: 'rd',
+        other: 'th'
+      }
+      constructor(start, end) {
+        this.start = {
+          year: start.getFullYear(),
+          month: start.getMonth(),
+          date: start.getDate()
+        }
+        this.end = {
+          year: end.getFullYear(),
+          month: end.getMonth(),
+          date: end.getDate()
+        }
+        return this.buildDateRange()
+      }
+      getDiff(type) {
+        return this.end[type] - this.start[type]
+      }
+
+      isEndWithingYear() {
+        const [yDiff, mDiff, dDiff] = [this.getDiff('year'), this.getDiff('month'), this.getDiff('date')]
+        return yDiff === 0 || yDiff === 1 && mDiff < 0 || yDiff === 1 && mDiff === 0 && dDiff < 0
+      }
+      isEqual(datePart){
+        return this.start[datePart] === this.end[datePart]
+      }
+
+      getYear(dateType) {
+        return this[dateType].year
+      }
+      getMonth(dateType) {
+        return FriendlyDateRange.monthes[this[dateType].month]
+      }
+      getDate(dateType) {
+        const dt = this[dateType].date
+        const ending = dt > 3 ? FriendlyDateRange.ordinals.other : FriendlyDateRange.ordinals[dt]
+        return dt + ending
+      }
+      buildStartDate() {
+        const [m, d, y] = [this.getMonth('start'), this.getDate('start'), this.getYear('start')]
+        const currentYear = new Date(Date.now()).getFullYear()
+        if (this.isEndWithingYear() && this.start.year === currentYear) {
+          return `${m} ${d}`  
+        }
+        return `${m} ${d}, ${y}`
+      }
+      buildEndDate() {
+        const [m, d, y] = [this.getMonth('end'), this.getDate('end'), this.getYear('end')]
+        if (this.isEndWithingYear()) {
+          if (this.isEqual('month') && this.isEqual('year')) {
+            if (this.isEqual('date')) return null
+            return `${d}`
+          }
+          return `${m} ${d}`
+        }
+        return `${m} ${d}, ${y}`
+      }
+      buildDateRange() {
+        return removeNulls([this.buildStartDate(), this.buildEndDate()])
+      }
+    }
+    const [startDate, endDate] = [new Date(start), new Date(end)]
+    return new FriendlyDateRange(startDate, endDate)
+  }
+
+
   return {
     telephoneCheck
     ,sym
     ,checkCashRegister
     ,updateInventory
     ,permAlone
+    ,makeFriendlyDates
   }
 })()

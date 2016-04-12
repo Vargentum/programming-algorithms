@@ -6,6 +6,7 @@ import {
   ,checkCashRegister
   ,updateInventory
   ,permAlone
+  ,makeFriendlyDates
 
 } from '../advanced'
 
@@ -86,13 +87,33 @@ describe('Advanced CodeCamp JS Algorhitms', () => {
     })
   })
 
-  describe('permAlone', () => {
-    it(`Should return the number of total permutations of the provided string that don't have repeated consecutive letters. 
-        Assume that all characters in the provided string are each unique.`, () => {
-      expect(permAlone("aab")).toEqual(2)
-      expect(permAlone("aabb")).toEqual(8)
-      expect(permAlone("abcdefa")).toEqual(3600)
-      expect(permAlone("zzzzzz")).toEqual(0)
+  // describe('permAlone', () => {
+  //   it(`Should return the number of total permutations of the provided string that don't have repeated consecutive letters. 
+  //       Assume that all characters in the provided string are each unique.`, () => {
+  //     expect(permAlone("aab")).toEqual(2)
+  //     expect(permAlone("aabb")).toEqual(8)
+  //     expect(permAlone("abcdefa")).toEqual(3600)
+  //     expect(permAlone("zzzzzz")).toEqual(0)
+  //   })
+  // })
+
+  describe('makeFriendlyDates', () => {
+    it(`Should convert a date range consisting of two dates formatted as YYYY-MM-DD into a more readable format.
+        The friendly display should use month names instead of numbers and ordinal dates instead of cardinal (1st instead of 1).`, () => {
+      expect(makeFriendlyDates(["2016-07-01", "2018-07-04"])).toEqual(["July 1st, 2016", "July 4th, 2018"])
+    })
+
+    it(`Shouldn't display the ending year if the date range ends in less than a year from when it begins.
+        Same for month.`, () => {
+      expect(makeFriendlyDates(["2016-07-01", "2016-07-04"])).toEqual(["July 1st","4th"])
+    })
+
+    it(`If the date range begins in the current year and ends within one year, 
+        the year should not be displayed at the beginning of the friendly range.`, () => {
+      expect(makeFriendlyDates(["2016-12-01", "2017-02-03"])).toEqual(["December 1st","February 3rd"])
+      expect(makeFriendlyDates(["2018-01-13", "2018-01-13"])).toEqual(["January 13th, 2018"])
+      expect(makeFriendlyDates(["2022-09-05", "2023-09-04"])).toEqual(["September 5th, 2022","September 4th"])
+      expect(makeFriendlyDates(["2022-09-05", "2023-09-05"])).toEqual(["September 5th, 2022","September 5th, 2023"])
     })
   })
 
