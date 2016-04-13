@@ -8,6 +8,7 @@ import {
   ,permAlone
   ,makeFriendlyDates
   ,Person
+  ,orbitalPeriod
 
 } from '../advanced'
 
@@ -121,10 +122,21 @@ describe('Advanced CodeCamp JS Algorhitms', () => {
   describe('Person class', () => {
     let bob = new Person("Bob Ross")
 
-    it(`Should `, () => {
+    it(`Should work`, () => {
       expect(Object.keys(bob).length).toBe(6)
       expect(bob instanceof Person).toBe(true)
       expect(bob.getFullName()).toBe("Bob Ross")
+    })
+  })
+
+  describe('orbitalPeriod', () => {
+    it(`Should return a new array that transforms the element's average altitude into their orbital periods.
+        The array will contain objects in the format {name: 'name', avgAlt: avgAlt}.
+        The values should be rounded to the nearest whole number. The body being orbited is Earth.`, () => {
+      expect(orbitalPeriod([{name : "sputnik", avgAlt : 35873.5553}])).toEqual([{name: "sputnik", orbitalPeriod: 86400}])
+      expect(
+        orbitalPeriod([{name: "iss", avgAlt: 413.6}, {name: "hubble", avgAlt: 556.7}, {name: "moon", avgAlt: 378632.553}])
+        ).toEqual([{name : "iss", orbitalPeriod: 5557}, {name: "hubble", orbitalPeriod: 5734}, {name: "moon", orbitalPeriod: 2377399}])
     })
   })
 

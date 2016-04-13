@@ -203,6 +203,20 @@ export default (() => {
   }
   
 
+  const orbitalPeriod = function orbitalPeriod(objectsArray) {
+    const EARTH = {
+      radius: 6367.4447, //km
+      GM: 398600.4418
+    }
+    const altitudeToOrbital = (alt) => {
+      const semiMajorAxis = alt + EARTH.radius
+      const orbitalPeriod = 2 * Math.PI * Math.sqrt(Math.pow(semiMajorAxis, 3) / EARTH.GM)
+      return Math.round(orbitalPeriod)
+    }
+    return objectsArray.map(({name, avgAlt}) => ({name, orbitalPeriod: altitudeToOrbital(avgAlt)}))
+  }
+
+
   return {
     telephoneCheck
     ,sym
@@ -211,5 +225,6 @@ export default (() => {
     ,permAlone
     ,makeFriendlyDates
     ,Person
+    ,orbitalPeriod
   }
 })()
