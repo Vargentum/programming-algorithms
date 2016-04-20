@@ -9,6 +9,7 @@ import {
   ,makeFriendlyDates
   ,Person
   ,orbitalPeriod
+  ,pairwise
 
 } from '../advanced'
 
@@ -140,10 +141,16 @@ describe('Advanced CodeCamp JS Algorhitms', () => {
     })
   })
 
-  // describe('', () => {
-  //   it(`Should `, () => {
-  //     expect().toEqual()
-  //   })
-  // })
+  describe('pariwise', () => {
+    it(`Should find element pairs whose sum equal the second argument arg and return the sum of their indices.
+        If multiple pairs are possible that have the same numeric elements but different indices, return the smallest sum of indices.
+        Once an element has been used, it cannot be reused to pair with another.`, () => {
+      expect(pairwise([1, 4, 2, 3, 0, 5], 7)).toBe(11)
+      expect(pairwise([1, 1, 1], 2)).toBe(1)
+      expect(pairwise([1, 3, 2, 4], 4)).toBe(1)
+      expect(pairwise([0, 0, 0, 0, 1, 1], 1)).toBe(10)
+      expect(pairwise([], 100)).toBe(0)
+    })
+  })
 
 })

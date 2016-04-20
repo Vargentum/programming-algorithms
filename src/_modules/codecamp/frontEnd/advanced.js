@@ -148,7 +148,7 @@ export default (() => {
         const [m, d, y] = [this.getMonth('start'), this.getDate('start'), this.getYear('start')]
         const currentYear = new Date(Date.now()).getFullYear()
         if (this.isEndWithingYear() && this.start.year === currentYear) {
-          return `${m} ${d}`  
+          return `${m} ${d}`
         }
         return `${m} ${d}, ${y}`
       }
@@ -177,7 +177,7 @@ export default (() => {
       this._silly = 2
       this._first = 3
       this._testCase = 4
-      
+
       this.setFullName(firstAndLast)
     }
     getFirstName() {
@@ -201,7 +201,7 @@ export default (() => {
       this.setLastName(last)
     }
   }
-  
+
 
   const orbitalPeriod = function orbitalPeriod(objectsArray) {
     const EARTH = {
@@ -217,6 +217,44 @@ export default (() => {
   }
 
 
+  const pairwise = function pairwise(arr, num) {
+    const disallowed = []
+    const isLegalIndex = (i) => disallowed.indexOf(i) === -1
+    const sum = (p,n) => p + n
+    const isEq = (n1,n2) =>  n1 + n2 === num
+    const getPairIdx = (n1,n2,i) => isLegalIndex(i) && isEq(n1,n2)
+
+    const getPairs = (p,n,i,arr) => {
+      const pairIdx = arr.findIndex(getPairIdx.bind(this, n)) //TODO: avoid O(n2) complexity
+      if (pairIdx !== -1 && pairIdx !== i && isLegalIndex(i)) {
+        disallowed.push(pairIdx, i)
+        return p.concat([i, pairIdx])
+      }
+      return p
+    }
+    const pairs = arr.reduce(getPairs, [])
+    return pairs.reduce(sum, 0)
+  }
+
+
+  // const pairwise = function pairwise(arr, num) {
+  //   const sum = (p,n) => p + n
+  //   const disallowedIdx = []
+  //   const isEq = (n1,n2) => n1 + n2 === num
+
+  //   const getPairs = (p,n,i,arr) => {
+  //     const eqNum = arr.slice(i+1).filter(isEq.bind(this, n))[0]
+  //     const eqIdx = arr.indexOf(eqNum)
+  //     if (!eqNum) return p
+  //     disallowedIdx.push(eqIdx)
+  //     return p.concat([i, eqIdx])
+  //   }
+  //   const pairs = arr.reduce(getPairs, [])
+  //   return pairs.reduce(sum, 0)
+  // }
+
+
+
   return {
     telephoneCheck
     ,sym
@@ -226,5 +264,6 @@ export default (() => {
     ,makeFriendlyDates
     ,Person
     ,orbitalPeriod
+    ,pairwise
   }
 })()
