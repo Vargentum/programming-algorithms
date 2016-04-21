@@ -90,15 +90,15 @@ describe('Advanced CodeCamp JS Algorhitms', () => {
     })
   })
 
-  // describe('permAlone', () => {
-  //   it(`Should return the number of total permutations of the provided string that don't have repeated consecutive letters. 
-  //       Assume that all characters in the provided string are each unique.`, () => {
-  //     expect(permAlone("aab")).toEqual(2)
-  //     expect(permAlone("aabb")).toEqual(8)
-  //     expect(permAlone("abcdefa")).toEqual(3600)
-  //     expect(permAlone("zzzzzz")).toEqual(0)
-  //   })
-  // })
+  describe('permAlone', () => {
+    it(`Should return the number of total permutations of the provided string that don't have repeated consecutive letters. 
+        Assume that all characters in the provided string are each unique.`, () => {
+      expect(permAlone("aab")).toEqual(2)
+      expect(permAlone("aabb")).toEqual(8)
+      expect(permAlone("abcdefa")).toEqual(3600)
+      expect(permAlone("zzzzzz")).toEqual(0)
+    })
+  })
 
   describe('makeFriendlyDates', () => {
     it(`Should convert a date range consisting of two dates formatted as YYYY-MM-DD into a more readable format.

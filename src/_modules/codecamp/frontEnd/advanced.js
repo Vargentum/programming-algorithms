@@ -83,18 +83,49 @@ export default (() => {
 
 
   const permAlone = function permAlone(str) {
-    const factorial = (n) => n === 0 ? 1 : n * factorial(n - 1)
-    const removeDuplicated = (str) => str.split('').reduce((p,n) => {
-      return p.indexOf(n) === -1 ? p.concat([n]) : p
-    })
-    const [total, requested] = [str.length, removeDuplicated(str).length]
-
-    switch (requested) {
-      case 0: return 1
-      case 1: return total
-      case total: return factorial(total)
-      default: return factorial(total) / factorial(total - requested)
+    const lettersAry = str.split('')
+    let indexesAry = lettersAry.map((n,i) => i)
+    let counter = 0
+    
+    const nextPermutation = (array) => {
+      // Find non-increasing suffix
+      var i = array.length - 1;
+      while (i > 0 && array[i - 1] >= array[i])
+          i--;
+      if (i <= 0)
+          return false;
+      
+      // Find successor to pivot
+      var j = array.length - 1;
+      while (array[j] <= array[i - 1])
+          j--;
+      var temp = array[i - 1];
+      array[i - 1] = array[j];
+      array[j] = temp;
+      
+      // Reverse suffix
+      j = array.length - 1;
+      while (i < j) {
+          temp = array[i];
+          array[i] = array[j];
+          array[j] = temp;
+          i++;
+          j--;
+      }
+      return true;
     }
+    const isntConsecContains = (arr) => arr.every((x,i,a) =>  x !== a[i-1] && x !== a[i+1])
+    const restoreLetters = (idxAry) => idxAry.map((n) => lettersAry[n])
+
+    if (isntConsecContains(lettersAry)) {
+      counter++
+    } 
+    while(nextPermutation(indexesAry)) {
+      if (isntConsecContains(restoreLetters(indexesAry))) {
+        counter++
+      } 
+    }
+    return counter
   }
 
 
