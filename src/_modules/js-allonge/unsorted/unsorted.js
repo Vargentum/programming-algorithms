@@ -92,6 +92,25 @@ export default (function Unsorted () {
   // })()
 
 
-  return{compose, mapWith}
+
+  /* ------------------------------------------
+    Chapter 6: Data 
+  ------------------------------------------ */
+  // Tail-call optimization
+
+  //non-optimized function: has to save stack for each recursive call
+
+  const factorial = (n) => 
+    n ? 1 : n * factorial(n-1)
+
+  //make recursive call to tail position
+  const factorialOptimized = (n, result = 1) =>
+    n === 1
+      ? result
+      : factorialOptimized(n-1, n * result)
+
+
+
+  return{compose, mapWith, factorialOptimized}
   
 })()
