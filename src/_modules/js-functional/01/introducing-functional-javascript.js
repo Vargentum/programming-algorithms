@@ -14,7 +14,7 @@ export const isIndexed = (data) => _.isArray(data) || _.isString(data)
 
 // get exsisted item by index from indexed data structure
 export const nth = (data, idx) => {
-  if (!isIndexed(data)) fail(`Proven data type isn't correct. Use array or string.`)
+  if (!isIndexed(data)) fail(`Proven data type ${data} isn't correct. Use array or string.`)
   else if (!_.isNumber(idx)) fail(`Supplied incorrect index. Should be number`)
   else if (idx < 0 || idx >= data.length) warn(`Requested index ${idx} is out of proven data`)
   return data[idx]
@@ -57,4 +57,16 @@ unsortedAry.sort(comparator(_.lte))
 // console.log(unsortedAry.sort(comparator(_.isEqual)))
 
 
+/*
+  Combine functions to acheive result
+*/
+const peopleTable = [["name", "age", "hair"], ["Merble", "35", "red"], ["Bob", "64", "blonde"]]
+
+const selectNames  = (table) => _.tail(_.map(table, _.head))
+const selectAges   = (table) => _.tail(_.map(table, _.partial(nth, _, 1)))
+const selectColors = (table) => _.tail(_.map(table, _.partial(nth, _, 2)))
+
+selectNames(peopleTable)  // LOG: ['Merble', 'Bob']
+selectAges(peopleTable)   // LOG: ['35', '64']
+selectColors(peopleTable) // LOG: ['red', 'blonde']
 
