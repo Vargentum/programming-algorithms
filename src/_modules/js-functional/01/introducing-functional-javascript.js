@@ -23,3 +23,38 @@ export const nth = (data, idx) => {
 const second = (data) => nth(data, 1)
 
 
+
+/*
+  Comparator
+
+  2 args function. compare arguments  
+*/
+const unsortedAry = [100, 1, 0, 10, -1, -2, -1]
+const sortedAry = [-2, -1, -1, 0, 1, 10, 100]
+
+const simpleComparator = (a,b) => {
+  if (a < b) return -1
+  if (b < a) return 1
+  return 0
+}
+
+unsortedAry.sort(simpleComparator) // sortedAry
+
+/*
+  Predicate
+
+  Function. Returns Bool
+*/
+// Combine Comparator with Predicate
+
+export const comparator = (predicate) => (a,b) => {
+  if (predicate(a,b)) return -1
+  if (predicate(b,a)) return 1
+  return 0
+}
+
+unsortedAry.sort(comparator(_.lte))
+// console.log(unsortedAry.sort(comparator(_.isEqual)))
+
+
+
