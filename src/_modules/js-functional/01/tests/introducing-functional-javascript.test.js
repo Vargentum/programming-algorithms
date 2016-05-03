@@ -1,5 +1,5 @@
 import _ from "lodash"
-import {nth, comparator} from '../introducing-functional-javascript';
+import {nth, comparator, executeIfHasField} from '../introducing-functional-javascript';
 
 describe('nth', () => {
   const letters = ['a','b','c']
@@ -9,12 +9,12 @@ describe('nth', () => {
     expect(nth(letters.join(''), 1)).toBe('b')
   });
 
-  it('Should fail with incorrect data', () => {
-    // expect(nth({}, 2)).toThrow()
-    // expect(nth(letters, -1)).toThrow()
-    // expect(nth(letters, 55)).toThrow()
-    // expect(nth(letters, {})).toThrow()
-  })
+  // it('Should fail with incorrect data', () => {
+  //   // expect(nth({}, 2)).toThrow()
+  //   // expect(nth(letters, -1)).toThrow()
+  //   // expect(nth(letters, 55)).toThrow()
+  //   // expect(nth(letters, {})).toThrow()
+  // })
 });
 
 
@@ -23,9 +23,21 @@ describe('comparator', () => {
   const sortedAsc   = [-2, -1, -1, 0, 1, 10, 100]
   const sortedDesc  = [100, 10, 1, 0, -1, -1, -2]
 
-  it(`Should use predicate for sorting items`), () => {
-    unsortedAry.sort(comparator(_.lte)).toEqual(sortedAsc) //ascending order
-    unsortedAry.sort(comparator(_.gte)).toEqual(sortedDesc) //descending order
-  }
-
+  it(`Should use predicate for sorting items`, () => {
+    expect(unsortedAry.sort(comparator(_.lte))).toEqual(sortedAsc) //ascending order
+    expect(unsortedAry.sort(comparator(_.gte))).toEqual(sortedDesc) //descending order
+  })
 })
+
+
+describe('executeIfHasField', () => {
+  const ary = [1,2,3]
+  const obj = {foo: 'bar'}
+
+  it(`Should use predicate for sorting items`, () => {
+    expect(executeIfHasField(ary, 'reverse')).toEqual(ary.reverse())
+    expect(executeIfHasField(obj, 'foo')).toEqual(obj.foo)
+    expect(executeIfHasField(obj, 'baz')).toBeUndefined ()
+  })
+})
+

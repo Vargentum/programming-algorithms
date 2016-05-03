@@ -70,3 +70,19 @@ selectNames(peopleTable)  // LOG: ['Merble', 'Bob']
 selectAges(peopleTable)   // LOG: ['35', '64']
 selectColors(peopleTable) // LOG: ['red', 'blonde']
 
+
+/*
+  existy / truthy / falsey
+*/
+
+const existy = x => x != null //not null, not undefnied
+const truthy = (x) => existy(x) && x !== false
+const falsey = (x) => !truthy(x)
+
+
+const doWhen = (cond, action) => truthy(cond) ? action() : undefined
+
+export const executeIfHasField = (target, name) => doWhen(
+  existy(target[name]),
+  _.partial(_.result, target, name)
+)

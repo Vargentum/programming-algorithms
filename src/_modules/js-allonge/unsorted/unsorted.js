@@ -111,6 +111,25 @@ export default (function Unsorted () {
 
 
 
-  return{compose, mapWith, factorialOptimized}
+  /* ------------------------------------------
+    Linked lists
+
+    fast: for retreiving head and tail
+    slow: iteration
+  ------------------------------------------ */
+  const cons = (a,b) => [a,b]
+  const car = ([a,b]) => a
+  const cdr = ([a,b]) => b
   
+  const linked = cons(1,cons(2,cons(3,cons(4, cons(5, null)))))
+  linked // [1,[2,[3,[4,[5,null]]]]]
+
+  car(linked) // 1
+  cdr(linked) // [2,[3,[4,[5,null]]]]
+
+
+
+
+
+  return{compose, mapWith, factorialOptimized}
 })()
