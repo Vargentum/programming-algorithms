@@ -75,7 +75,7 @@ selectColors(peopleTable) // LOG: ['red', 'blonde']
   existy / truthy / falsey
 */
 
-const existy = x => x != null //not null, not undefnied
+export const existy = x => x != null //not null, not undefnied
 const truthy = (x) => existy(x) && x !== false
 const falsey = (x) => !truthy(x)
 
