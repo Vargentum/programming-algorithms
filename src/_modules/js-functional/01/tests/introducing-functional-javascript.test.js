@@ -1,5 +1,5 @@
 import _ from "lodash"
-import {nth, comparator, executeIfHasField} from '../introducing-functional-javascript';
+import {nth, comparator, executeIfHasField, complement} from '../introducing-functional-javascript';
 
 describe('nth', () => {
   const letters = ['a','b','c']
@@ -40,4 +40,29 @@ describe('executeIfHasField', () => {
     expect(executeIfHasField(obj, 'baz')).toBeUndefined ()
   })
 })
+
+
+describe('complement', () => {
+  const ary = [1,2,'a','b']
+
+  it(`Should return inverted sence of given predicate `, () => {
+    expect(ary.filter(complement(_.isNumber))).toEqual(_.reject(ary, _.isNumber))
+  })
+})
+
+
+describe('groupBy and countBy', () => {
+  const albums = [{title: "Sabbath Bloody Sabbath", genre: "Metal"}, 
+                  {title: "Scientist", genre: "Dub"},
+                  {title: "Undertow", genre: "Metal"}];
+
+  it(`Should return inverted sence of given predicate `, () => {
+    expect(_.groupBy(albums, (x) => x.genre)).toEqual({Metal:[{title:"Sabbath Bloody Sabbath", genre:"Metal"},
+                                                             {title:"Undertow", genre:"Metal"}],
+                                                       Dub:  [{title:"Scientist", genre:"Dub"}]})
+    expect(_.countBy(albums, (x) => x.genre)).toEqual({Metal: 2, Dub: 1})
+  })
+})
+
+
 

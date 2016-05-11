@@ -86,3 +86,17 @@ export const executeIfHasField = (target, name) => doWhen(
   existy(target[name]),
   _.partial(_.result, target, name)
 )
+
+
+/*
+  complement function
+*/
+export const complement = (pred) => (val) => {
+  debugger
+  return !pred(val)
+}
+
+
+
+
+
