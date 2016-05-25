@@ -4,7 +4,8 @@
   "dependencies": {
     "jquery": "~2.2.0",
     "normalize.css": "~3.0.3",
-    "round-to": "^1.1.0"
+    "round-to": "^1.1.0",
+    "whatwg-fetch": "^1.0.0"
   },
   "devDependencies": {
     "URIjs": "^1.16.1",
@@ -18,6 +19,7 @@
     "babelify": "~7.2.0",
     "browser-sync": "~2.11.1",
     "browserify": "~13.0.0",
+    "co": "^4.6.0",
     "del": "~2.2.0",
     "envify": "~3.4.0",
     "foldero": "~0.1.1",
