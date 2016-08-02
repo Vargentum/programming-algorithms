@@ -1,6 +1,8 @@
 import insertDash from './01.insertDash'
 import digitize from "./02.digitize"
 import sortNumbers from "./03.sortNumbers"
+import checkeredBoard from "./04.checkeredBoard"
+
 
 
 describe('insertDash', () => {
@@ -37,4 +39,11 @@ describe('sortNumbers', () => {
     expect(sortNumbers([1,3,4,2])).toEqual([1,2,3,4]);
     expect(sortNumbers([99,1,3,-9,12])).toEqual([-9,1,3,12,99]);
   });
+});
+
+describe('checkeredBoard', () => {
+  it('should work', () => {
+    // expect().toEqual('');
+  });
+  console.log(checkeredBoard(2))
 });
