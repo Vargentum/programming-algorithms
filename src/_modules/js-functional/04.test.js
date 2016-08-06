@@ -79,3 +79,53 @@ describe(`repetition`, () => {
     // you can't do this with repeatedly, because you should know the iteration quantity
   });
 });
+
+
+/* -----------------------------
+  Fnull hoc
+----------------------------- */
+function fnull (fn, ...defaults) {
+  return (...args) => {
+    const fullArgs = _.map(args, (a,i) => a || defaults[i])
+    return fn(...fullArgs)
+  }
+}
+
+// describe(`fnull`, () => {
+//   it(`should replace falsy values with provided defaults`, () => {
+//     //you should know the index of `falsey` occuring. problem??
+//   });
+// });
+
+
+/* -----------------------------
+  check
+----------------------------- */
+function validate(...checks) {
+  return (src) =>
+    _.reduce(checks, (err, {check, message}) => {
+      return check(src)
+        ? err
+        : err.concat([message])
+    }, [])
+}
+
+describe(`validate `, () => {
+  const checkNum = {check: _.isNumber, message: 'should be a number'}
+  const checkAry = {check: _.isArray, message: 'should be an array'}
+  const nums = [1,3]
+  it(`should validate in map`, () => {
+    expect(_.map(nums, validate(checkAry))).toEqual(_.map(nums, () => ['should be an array']))
+    expect(_.map(nums, validate(checkNum))).toEqual(repeat(nums.length, []))
+  });
+  it(`should validate `, () => {
+    const checker = validate(checkAry)
+    expect(checker(34)).toEqual([checkAry.message])
+    expect(checker(['foo', 'bar'])).toEqual([])
+  });
+});
+
+
+// function hasKeys(...keys) {
+//   return (src) => 
+// }
