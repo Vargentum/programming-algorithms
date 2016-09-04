@@ -112,27 +112,27 @@ export function* fetchGithubUser(user) {
 */
 
 // 1
-co(function* () {
-  let result = yield new Promise(
-    resolve => setTimeout(resolve, 1000, 1)
-  )
-  console.log(result)
-})
+// co(function* () {
+//   let result = yield new Promise(
+//     resolve => setTimeout(resolve, 1000, 1)
+//   )
+//   console.log(result)
+// })
 
-// 2
-co(function* () {
-   let result = yield new Promise(
-    resolve => setTimeout(resolve, 1000, 1)
-  );
-  return result;
-}).then(alert);
+// // 2
+// co(function* () {
+//    let result = yield new Promise(
+//     resolve => setTimeout(resolve, 1000, 1)
+//   );
+//   return result;
+// }).then(alert);
 
-// 3
-co(function*() {
-  throw new Error("Sorry that happened");
-})
+// // 3
+// co(function*() {
+//   throw new Error("Sorry that happened");
+// })
 
-// 4
-co(function*() {
-  throw new Error("Sorry that happened");
-}).catch(alert)
+// // 4
+// co(function*() {
+//   throw new Error("Sorry that happened");
+// }).catch(alert)
