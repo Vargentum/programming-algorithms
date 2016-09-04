@@ -35,5 +35,6 @@ for (var i = 0; i < links.length; i++) {
     links[i].onclick = function() {
       console.log(i);
     }
-  })(i)
+  })(i);
 }
+

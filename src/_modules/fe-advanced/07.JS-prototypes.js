@@ -82,10 +82,11 @@ console.log( foo.__proto__, foo.parent );
 
 // undefined, undefined
 // undefined, bar
-// Object { parent: "bar" }, bar
+// Object { parent: "bar" }, bar  +++ 
 // ReferenceError
 // window, bar
-// function Foo(arg) { ... }, bar    +++
+// function Foo(arg) { ... }, bar    ---  (Instance __proto__ !== Constructor __proto__
+                                        // Instance __proto__ === Constructor.prototype)
 // null, bar
 
 
@@ -137,10 +138,10 @@ function Foo(arg) {
 var bar = new (new Foo("foo")).constructor("bar");  // new Undefined
 console.log(bar.prop);
 
-// foo, bar, undefined  +++
+// foo, bar, undefined  ---
 // foo, bar, foo
 // foo, bar, foo
-// foo, bar, bar
+// foo, bar, bar  +++ (???)
 // foo, foo, bar
 // foo, foo, foo
 
@@ -153,16 +154,16 @@ function Foo(arg) {
 
 var foo = new Foo("foo");
 console.log(foo.__proto__); // Object
-console.log(Foo.__proto__); // Object
-console.log(foo.prototype); // Object
+console.log(Foo.__proto__); // function
+console.log(foo.prototype); // undefined
 console.log(Foo.prototype); // Object
 
 // Object, Object, undefined, Object
 // undefined, function, function, Object
 // Object, function, undefined, undefined
-// Object, Object, Object, Object              +++
+// Object, Object, Object, Object              ---
 // undefined, function, function, function
-// Object, function, undefined, Object
+// Object, function, undefined, Object         +++
 
 
 /*9.*/
@@ -172,12 +173,12 @@ var foo = new Foo();
 Foo.prototype = { };
 console.log( foo.prop );
 
-// foo  
+// foo        +++ (old prototype for already created objects)
 // null
 // ReferenceError
 // TypeError
 // Object
-// undefined  +++ (prototype has been already changed)
+// undefined  ---
 
 
 /*10.*/
@@ -221,9 +222,9 @@ console.log( foo.prop );
 // Object
 // null
 // ReferenceError
-// undefined          +++
+// undefined          --- (__proto__ not prototype!)
 // TypeError
-// foo
+// foo                +++ 
 
 
 /*13.*/

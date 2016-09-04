@@ -19,7 +19,7 @@ function foo(x, y, z) {
 /*
 (curry(foo)(1, 2, 3))();
 (curry(foo, 1, 2)(3)());
-(curry(foo)(1, 2, 3));
+(curry(foo)(1, 2, 3));   +++ 
 */
 
 
@@ -73,7 +73,7 @@ function bar(x, y, z) {
 var foo1 = curry(foo, 1);  // (...a2) => ... [1]
 var foo2 = curry(bar, 2);  // (...a2) => ... [2]
 var foo3 = curry(foo2, 3); // (...a2) => ... [3,2]
-console.log(foo3()); // 5
+console.log(foo3()); // 5    NaN
 
 
 
@@ -121,7 +121,9 @@ const curry = (fn, ...a1) => (...a2) => fn(...[[...a1], [...a2]])
 // console.log( curry(Math.max, 1, 2, 3, 4)() );  
 
 
-/*6. 2 - because of Array of defined variables length */
+/*6. 2 - because of Array of defined variables length (INCORRECT)
+
+    CORRECT: 5  (`params` length) */
 
 
 function foo(x1, x2, x3, x4, x5) {
@@ -157,7 +159,7 @@ console.log(f(2), f(3), f(4));
 // 2, 9, 16
 // 0, 4, 6
 // 1, 6, 12
-// 2, 6, 24
+// 2, 6, 24  ++++ (CORRECT)
 // 6, 12, 20
 
 

@@ -8,9 +8,9 @@ foo();
 
 // undefined, window
 // ReferenceError
-// window, window
+// window, window   +++ ('use strict' was hoisted)
 // undefined, undefined
-// window, undefined      +++
+// window, undefined     ---
 
 
 /*2. foo foo foo undefined undefined*/
@@ -74,7 +74,7 @@ function foo() {
 // foo(){}, foo(){}, window, window
 // foo(){}, window, window, undefined
 // foo(){}, foo(){}, window, undefined
-// foo(){}, window, window, window
+// foo(){}, window, window, window           +++
 // foo(){}, undefined, window, undefined
 
 
@@ -96,7 +96,7 @@ new foo();
 
 // 10, 10
 // ReferenceError
-// 20, 10
+// 20, 10            +++
 // 20, 20
 // 10, 20
 
@@ -116,7 +116,7 @@ new foo.method();
 // undefined, foo
 // ReferenceError
 // undefined, undefined
-// foo, undefined
+// foo, undefined          +++
 // foo, foo
 
 
@@ -137,7 +137,7 @@ for(var i = 0; i < people.length; i++) {
 }
 
 // Tom, Tom
-// Bob, Tom
+// Bob, Tom             +++
 // ReferenceError
 // TypeError
 // undefined, undefined
@@ -158,9 +158,9 @@ fixStatement.call(this, brokenStatement);
 
 // TypeError
 // ReferenceError
-// undefined is undefined language    +++ (global translated)
+// undefined is undefined language    ---
 // JavaScript is awesome language
-// is language
+// is language  +++  (undefined was erased by String#join)
 
 
 /*9. 101 */
@@ -177,7 +177,7 @@ function foo(a, b, c, d) {
 }
 foo(10, 20, 30, 40);
 
-// 101
+// 101     +++
 // ReferenceError
 // undefined
 // NaN
@@ -200,13 +200,12 @@ var bazObj = {
 
 bazObj.foo(10, 20);
 
-
-
 // 30, 10, 20                         +++
 // undefined, undefined, undefined
 // 10, 20, 30
 // 10, 20, undefined
 // undefined, 10, 20
+
 
 
 /*11. */
@@ -220,9 +219,9 @@ var foo = function() {
 
 foo()();
 
-// window
+// window             +++ (binded Outer FN, not Inner one, no bind translation!)
 // TypeError
-// Object { prop: "bar" }     +++ (binded)
+// Object { prop: "bar" }     ---
 // ReferenceError
 // undefined
 
@@ -249,7 +248,7 @@ hello = new ShowHello(divElement);
 // undefined
 
 
-/*13. false, 2 */
+/*13. */
 
 function Rectangle(x1, y1, x2, y2) {
   this.x1 = x1;
@@ -261,13 +260,13 @@ function Rectangle(x1, y1, x2, y2) {
     return (x2 - x1) * (y2 - y1);
   }
 }
-var rect1 = Rectangle(2, 3, 7, 7).getSquare();  // 7 - 2 * 7 - 3 == 20
-var rect2 = Rectangle(4, 1, 10, 5).getSquare(); // 10 - 4 * 5 - 1 == 24
-var rect3 = Rectangle(3, 7, 5, 8).getSquare();  // 5 - 3 * 8 - 7 == 2
+var rect1 = Rectangle(2, 3, 7, 7).getSquare();  // with `new`: 7 - 2 * 7 - 3 == 20
+var rect2 = Rectangle(4, 1, 10, 5).getSquare(); // with `new`: 10 - 4 * 5 - 1 == 24
+var rect3 = Rectangle(3, 7, 5, 8).getSquare();  // with `new`: 5 - 3 * 8 - 7 == 2
 
 console.log(rect1 > rect2, rect3); // false, 2
 
-// TypeError
+// TypeError         +++ (no `new`)
 // true, 2
 // true, undefined
 // false, 2
