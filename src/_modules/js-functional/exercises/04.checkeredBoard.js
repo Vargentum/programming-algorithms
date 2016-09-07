@@ -26,7 +26,7 @@ export default function checkeredBoard (dim) {
   }
   const lineBreak = '/n'
   const seq = _.times(dim * dim, () => [squares.filled, squares.empty])
-  console.log(seq)
+  // console.log(seq)
   return seq
     .map(interposeAt(lineBreak, dim))
     .map(interposeExcept(' ', dim))

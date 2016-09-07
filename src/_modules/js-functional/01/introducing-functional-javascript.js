@@ -92,7 +92,6 @@ export const executeIfHasField = (target, name) => doWhen(
   complement function
 */
 export const complement = (pred) => (val) => {
-  debugger
   return !pred(val)
 }
 
