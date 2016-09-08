@@ -1,25 +1,24 @@
 import _ from 'lodash'
 import findHourglassesSum from './arrays/02.2d-arrays.js'
 import {makeRotationLeft, makeRotationRight} from './arrays/04.left-rotation.js'
+import {findString} from './arrays/05.sparse-arrays.js'
 
 /* -----------------------------
   02.
 ----------------------------- */
 
 describe(`findHourglassesSum`, () => {
-  const value = [
+  const v2 = [
     [1, 1, 1, 0, 0, 0],
     [0, 1, 0, 0, 0, 0],
     [1, 1, 1, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0],
+    [0, 9, 2, -4, -4, 0],
+    [0, 0, 0, -2, 0, 0],
+    [0, 0, -1, -2, -4, 0]
   ]
-  const actual = findHourglassesSum(value)
-  const expected = 20
 
-  it(`should return sum of numbers from 'hourglass patterns'`, () => {
-    expect(actual).toEqual(expected)
+  it(`should return sum of numbers of max hourglass`, () => {
+    expect(findHourglassesSum(v2)).toEqual(13)
   })
 })
 
@@ -56,6 +55,19 @@ describe(`makeRotation`, () => {
       check(makeRotationRight, expected)
     })
   })
-
-  
 })
+
+
+
+/* -----------------------------
+  05.
+----------------------------- */
+// describe(`findString`, () => {
+//   const value = [4, ['aba', 'baba', 'aba', 'xzxb'], 3, ['aba', 'xzxb', 'ab']]
+//   const actual = findString(value)
+//   const expected = [2,1,0]
+
+//   it(`test`, () => {
+//     expect(actual).toEqual(expected)
+//   })
+// })

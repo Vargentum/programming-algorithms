@@ -1,5 +1,5 @@
 /*
-Context 
+Context
 Given a  2D Array, :
 
 1 1 1 0 0 0
@@ -25,28 +25,24 @@ Algo:
 
 const HOURGLASS_SIZE = 3 //height & width are equal
 const sum = (p,n) => p + Number(n)
-const concat = (p,n) => p.concat(n)
+const sortAsc = (a,b) => a - b
+const getLast = (ary) => ary[ary.length - 1]
 
 export default function findHourglassesSum (incomeAry) {
-  const hgsLastIdx = HOURGLASS_SIZE - 1
-  const hgsCreationLimit = incomeAry.length - HOURGLASS_SIZE
-
-  const findHgs = ({x, y}, ary2d) => {
-    const result = []
-    if (x >= hgsCreationLimit || y >= hgsCreationLimit) return result
-    const top = ary2d[y].slice(x, x + hgsLastIdx)
+  const findedHgs = []
+  const hgsCreationLimit = incomeAry.length - HOURGLASS_SIZE  //limit positions that can't create hgs from
+  const findHgsSum = ({x, y}, ary2d) => {
+    if (x > hgsCreationLimit || y > hgsCreationLimit) return
+    const top = ary2d[y].slice(x, x + HOURGLASS_SIZE)
          ,ctr = ary2d[y+1][x+1]
-         ,btm = ary2d[y+hgsLastIdx].slice(x,x + hgsLastIdx)
-    result.push(...top, ctr, ...btm)
-    return result
+         ,btm = ary2d[y+2].slice(x,x + HOURGLASS_SIZE)
+    findedHgs.push(
+      [...top, ctr, ...btm].reduce(sum, 0)
+    )
   }
-
-  return incomeAry
-    .map((row,y) => {
-      return row
-        .map((cell, x) => findHgs({x,y}, incomeAry))
-        .reduce(concat)
-        .reduce(sum, 0)
+  incomeAry
+    .forEach((row,y) => {
+      row.forEach((cell, x) => findHgsSum({x,y}, incomeAry))
     })
-    .reduce(sum, 0)
+  return getLast(findedHgs.sort(sortAsc))
 }
