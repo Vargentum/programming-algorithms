@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import findHourglassesSum from './arrays/02.2d-arrays.js'
-import {makeRotationLeft, makeRotationRight} from './arrays/04.left-rotation.js'
+import {parseInput, parseOutput, makeRotationLeft, makeRotationRight} from './arrays/04.left-rotation.js'
 import {findString} from './arrays/05.sparse-arrays.js'
 
 /* -----------------------------
@@ -32,6 +32,17 @@ describe(`makeRotation`, () => {
   const value = [1,2,3,4,5]
   const check = (fn, src) => _.forEach(src, (exp, rotQ) => {
     expect(fn(value.length, Number(rotQ), value)).toEqual(exp)
+  })
+
+  describe(`raw left order`, () => {
+    const input = `5 4
+1 2 3 4 5`
+    const actual = parseOutput(makeRotationLeft(...parseInput(input)))
+    const expected = '5 1 2 3 4'
+  
+    it(`should work with string Input and produce string Output`, () => {
+      expect(actual).toEqual(expected)
+    })
   })
 
   describe(`left order`, () => {

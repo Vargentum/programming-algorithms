@@ -9,6 +9,17 @@ The first line contains two space-separated integers denoting the respective val
 The second line contains  space-separated integers describing the respective elements of the array's initial state.
 */
 
+export function parseInput(input) {
+  const [lenAndRotateQ, aryString] = input.split(/\n/)
+  const [len, rotateQ] = lenAndRotateQ.split(' ').map(Number)
+  const ary = aryString.split(' ').map(Number)
+  return [len, rotateQ, ary]
+}
+
+export function parseOutput(output) {
+  return output.join(' ')
+}
+
 const getItemToReplaceIdx = {
   right: (idx, total, rotateQ) => {
     const unsafeIdx = idx - rotateQ
