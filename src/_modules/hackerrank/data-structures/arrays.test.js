@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import findHourglassesSum from './arrays/02.2d-arrays.js'
 import {parseInput, parseOutput, makeRotationLeft, makeRotationRight} from './arrays/04.left-rotation.js'
-import {findString} from './arrays/05.sparse-arrays.js'
+import * as module5 from './arrays/05.sparse-arrays.js'
 
 /* -----------------------------
   02.
@@ -73,12 +73,23 @@ describe(`makeRotation`, () => {
 /* -----------------------------
   05.
 ----------------------------- */
-// describe(`findString`, () => {
-//   const value = [4, ['aba', 'baba', 'aba', 'xzxb'], 3, ['aba', 'xzxb', 'ab']]
-//   const actual = findString(value)
-//   const expected = [2,1,0]
+describe(`findString`, () => {
+  const {parseInput, parseOutput, findString} = module5
 
-//   it(`test`, () => {
-//     expect(actual).toEqual(expected)
-//   })
-// })
+  it(`should detect occurrence for each query in strings`, () => {
+      const input = `4
+aba
+baba
+aba
+xzxb
+3
+aba
+xzxb
+ab`
+  const output = `2
+1
+0`
+  const result = parseOutput(findString.apply(null, parseInput(input)))
+    expect(result).toEqual(output)
+  })
+})
