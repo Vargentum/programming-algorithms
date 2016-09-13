@@ -41,11 +41,11 @@ const toFrequency = (item) => (p,n) => n === item ? p + 1 : p
 const getFrequency = (where, what) => where.reduce(toFrequency(what), 0)
 
 export function findString(strings, queries) {
-  const cache = {}
+  const repeated = {}
   return queries.map(query => {
-    if (cache[query]) return cache[query]
+    if (repeated[query]) return repeated[query]
     const queryFrq = getFrequency(strings, query)
-    cache[query] = queryFrq
+    repeated[query] = queryFrq
     return queryFrq
   })
 }
