@@ -93,3 +93,35 @@ ab`
     expect(result).toEqual(output)
   })
 })
+
+
+
+
+/* -----------------------------
+  Memoize
+
+  1. function should be pure,
+  2. function's first parameter should be string ()
+----------------------------- */
+function memoize(fn) {
+  const cache = {}
+  return function(val) {
+    if (!cache[val]) cache[val] = fn(val)
+    return cache[val]
+  }
+}
+
+describe(`memoize`, () => {
+  const heavyFn = (a) => a * 3
+  const memoizedHeavyFn = memoize(heavyFn)
+
+  memoizedHeavyFn(2)
+  memoizedHeavyFn(3)
+  memoizedHeavyFn(2) // shouldn't be calculated
+  memoizedHeavyFn(2) // shouldn't be calculated
+
+  // it(``, () => {
+  //   expect(actual).to.equal(expected)
+  // })
+})
+
