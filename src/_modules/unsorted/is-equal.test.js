@@ -1,5 +1,7 @@
 /* -----------------------------
   Equality checker: compare any types include nested objects or arrays
+
+  fast method: JSON.stringify
 ----------------------------- */
 
 const PRIMITIVE_TYPES = [Number, Boolean, NaN, null, undefined, String, Symbol]
@@ -27,7 +29,6 @@ describe(`module`, () => {
 
   describe(`utils`, () => {
     describe(`isPrimitive`, () => {
-      const objects = [{}, [], function() {}]
       it(`should return true if values is Primitive type`, () => {
         primitives.forEach(p => expect(isPrimitive(p)).toBe(true))
       })
@@ -58,8 +59,13 @@ describe(`module`, () => {
     it(`should compare Functions equality`, () => {
       testComapre([Array.prototype.slice, () => {}, Object.prototype.toString])
     });
-    it(`should compare Functions equality`, () => {
+    it(`should compare nested objects and arrays equality`, () => {
       testComapre([{foo: 'bar', primitives, objects}])
+    });
+    it(`should compare circular objects equality`, () => {
+      const foo = {foo: 'foo', bar}
+      const bar = {foo, bar: 'bar'}
+      testComapre([foo, bar])
     });
   })
 })
