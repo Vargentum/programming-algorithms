@@ -27,6 +27,6 @@ describe('Generator Composition', () => {
 })
 
 
-describe('Flatten Async Code flow', () => {
-  console.log(execute(fetchGithubUser('Vargentum')))
-})
+// describe('Flatten Async Code flow', () => {
+//   console.log(execute(fetchGithubUser('Vargentum')))
+// })
